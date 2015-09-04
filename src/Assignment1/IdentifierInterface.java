@@ -3,5 +3,5 @@ package Assignment1;
 public class IdentifierInterface {
 	IdentifierInterface(){
 	}
-	//Mooi man
+	//Mooi man, lekker gewerkt (y)
 }
