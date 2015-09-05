@@ -43,7 +43,7 @@ class NumberStack implements NumberStackInterface {
 		amountElements += 1;
 	}
 
-	Number void pop () {
+	public Number pop () {
 	amountElements -= 1;
 	return stackArray[amountElements];
     }
