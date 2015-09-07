@@ -45,10 +45,28 @@ public interface IdentifierInterface {
 	 */
 	
 	char getChar(int index);
-	/**
-	 * 
+	/** Returns a char at position index from the Identifier
+	 * @precondition:
+	 * 		The index is less than the size of the Identifier
+	 * @postcondition:
+	 * 		The character at position index is returned
 	 */
 	
+	int size();
+	/** Returns the size of the Identifier
+	 * @precondition:
+	 * -
+	 * @postcondition:
+	 * 		The size of the Identifier is returned
+	 */
 	
+	boolean isEqual(Identifier id);
+	/** Checks if the two Identifiers are equal to eachother
+	 * @precondition:
+	 * -
+	 * @postcondition:
+	 * 		false: The Identifiers are not equal
+	 * 		true: The Identifiers are equal
+	 */
 	
 }
