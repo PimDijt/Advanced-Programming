@@ -14,19 +14,41 @@ package assignment1;
 *	Identifier();
 *	    <dl>
 *		<dt><b>PRE-conditie</b><dd>-
-*		<dt><b>POST-conditie</b><dd>
+*		<dt><b>POST-conditie</b><dd> The new Identifier object contains a StringBuffer with one character
 *	    </dl>
 *	<br>
 *	Identifier (Identifier src);
 *	    <dl>
 *		<dt><b>PRE-conditie</b><dd>-
-*		<dt><b>POST-conditie</b><dd>
+*		<dt><b>POST-conditie</b><dd> The new Identifier object contains a copy of src
 *	    </dl>
 *
 **/
 
 
 public interface IdentifierInterface {
+	
+	void init(char c);
+	/** Initializes the Identifier object to an empty StringBuffer
+	 * @precondition:
+	 * 		c is a char from a-Z
+	 * @postcondition:
+	 * 		The Identifier object is initialized with character c
+	 */
+	
+	void addChar(char c);
+	/** Adds character c to the Identifier
+	 * @precondition:
+	 * 		c is a char form a-Z
+	 * @postcondition:
+	 * 		Character c is added to the Identifier
+	 */
+	
+	char getChar(int index);
+	/**
+	 * 
+	 */
+	
 	
 	
 }
