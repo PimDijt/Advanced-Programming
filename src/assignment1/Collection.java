@@ -1,5 +1,8 @@
 package assignment1;
 
-public class Collection {
-
+public class Collection implements CollectionInterface{
+	
+	public Collection(){
+		
+	}
 }

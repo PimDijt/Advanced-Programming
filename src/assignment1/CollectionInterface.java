@@ -1,5 +1,5 @@
 package assignment1;
 
-public class CollectionInterface {
+public interface CollectionInterface {
 
 }
