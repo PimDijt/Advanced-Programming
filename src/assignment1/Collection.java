@@ -1,15 +1,15 @@
 package assignment1;
 
-public class Collection implements CollectionInterface{
-	
-	public Collection(){
-		
+public class Collection implements CollectionInterface {
+
+	public Collection() {
+
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -21,13 +21,13 @@ public class Collection implements CollectionInterface{
 	@Override
 	public void addIdentifier(Identifier id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeIdentifier(Identifier id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

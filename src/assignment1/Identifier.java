@@ -1,21 +1,21 @@
 package assignment1;
 
-public class Identifier implements IdentifierInterface{
-	
-	public Identifier(){
-		
+public class Identifier implements IdentifierInterface {
+
+	public Identifier() {
+
 	}
 
 	@Override
 	public void init(char c) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addChar(char c) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
