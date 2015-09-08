@@ -14,7 +14,7 @@ package assignment1;
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>The new Identifier object contains a StringBuffer with one
+ *              <dd>The new Identifier object contains a StringBuffer with one //DONT KNOW ABOUT STRINGBUFFER
  *              character
  *              </dl>
  *              <br>
@@ -29,34 +29,32 @@ package assignment1;
 
 public interface IdentifierInterface {
 
-	void init(char c);
-
 	/**
-	 * Initializes the Identifier object to an empty StringBuffer
+	 * Initializes the Identifier object to an empty StringBuffer //DONT KNOW ABOUT STRINGBUFFER
 	 * 
-	 * @precondition: c is a char from a-Z
+	 * @precondition: c is a char from a-z, A-Z
 	 * @postcondition: The Identifier object is initialized with character c
 	 */
+	void init(char c);
 
-	void addChar(char c);
 
 	/**
 	 * Adds character c to the Identifier
 	 * 
-	 * @precondition: c is a char form a-Z
-	 * @postcondition: Character c is added to the Identifier
+	 * @precondition: c is a char from a-z, A-Z, 0-9
+	 * @postcondition: Character c is added to the Identifier at the end
 	 */
+	void addChar(char c);
 
-	char getChar(int index);
 
 	/**
 	 * Returns a char at position index from the Identifier
 	 * 
-	 * @precondition: The index is less than the size of the Identifier
+	 * @precondition: The index is less than the size of the Identifier and not negative
 	 * @postcondition: The character at position index is returned
 	 */
+	char getChar(int index);
 
-	int size();
 
 	/**
 	 * Returns the size of the Identifier
@@ -64,14 +62,15 @@ public interface IdentifierInterface {
 	 * @precondition: -
 	 * @postcondition: The size of the Identifier is returned
 	 */
+	int size();
 
-	boolean isEqual(Identifier id);
 	/**
 	 * Checks if the two Identifiers are equal to eachother
 	 * 
 	 * @precondition: -
-	 * @postcondition: false: The Identifiers are not equal true: The
-	 *                 Identifiers are equal
+	 * @postcondition: false: The Identifiers are not equal 
+	 * 				   true: The  Identifiers are equal
 	 */
+	boolean isEqual(Identifier id);
 
 }

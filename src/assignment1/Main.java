@@ -10,3 +10,5 @@ public class Main {
 	 * 6. ask user for input again (point 1.)
 	 */
 }
+
+// We need to expand on this plan de campagne

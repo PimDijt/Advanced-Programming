@@ -5,9 +5,9 @@ package assignment1;
  *
  * @author Pim Dijt, Rick van Rheenen
  * 
- * @elements Identifiers of type StringBuffer
+ * @elements Identifiers of type StringBuffer /////DONT KNOW ABOUT STRINGBUFFER
  * @structure none
- * @domain A collection of between 0 and 20 Identifiers
+ * @domain A collection of between 0 and 20 Identifiers /////TURN THIS INTO PUBLIC FINAL CONSTANT
  * @constructor Collection();
  *              <dl>
  *              <dt><b>PRE-condition</b>
@@ -27,26 +27,24 @@ package assignment1;
  **/
 
 public interface CollectionInterface {
-
-	void init();
-
+	
+	public final int DOMAIN = 20; ///// Do we also need lower boundary? 	public final int LOW_DOMAIN = 0; 
+	
 	/**
 	 * Initializes an empty Collection
 	 * 
 	 * @precondition: -
 	 * @postcondition: The collection is initialized as an empty collection
 	 */
-
-	int size();
-
+	void init();
+			
 	/**
 	 * Return the size of the Collection
 	 * 
 	 * @precondition: -
 	 * @postcondition: The amount of Identifiers in the collection is returned
 	 */
-
-	void addIdentifier(Identifier id);
+	int size();
 
 	/**
 	 * Adds an Identifier to the collection
@@ -54,8 +52,7 @@ public interface CollectionInterface {
 	 * @precondition: -
 	 * @postcondition: The Identifier is added to the collection
 	 */
-
-	void removeIdentifier(Identifier id);
+	void addIdentifier(Identifier id);
 
 	/**
 	 * removes Identifier id from the collection
@@ -63,15 +60,13 @@ public interface CollectionInterface {
 	 * @precondition: -
 	 * @postcondition: Identifier id is no longer in the collection
 	 */
-
-	Identifier getIdentifier(Identifier id);
+	void removeIdentifier(Identifier id);
 
 	/**
 	 * @precondition: ?
-	 * @postcondition: ?
+	 * @postcondition: A random Identifier from the collection is returned
 	 */
-
-	Collection difference(Collection col);
+	Identifier getIdentifier(Identifier id);
 
 	/**
 	 * Returns a set of the difference between col and this set
@@ -80,8 +75,7 @@ public interface CollectionInterface {
 	 * @postcondition: A set of the difference between col and this set is
 	 *                 returned
 	 */
-
-	Collection union(Collection col);
+	Collection difference(Collection col);
 
 	/**
 	 * Returns a set of the union between col and this set
@@ -89,18 +83,17 @@ public interface CollectionInterface {
 	 * @precondition: -
 	 * @postcondition: A set of the union between col and this set is returned
 	 */
-
-	Collection intersection(Collection col);
+	Collection union(Collection col);
 
 	/**
 	 * Returns a set of the intersection between col and this set
-	 * 
+	 * 			/////NB: WATCH THAT THE UNION MIGHT EXCEED 20!! Success/failure 
 	 * @precondition: -
-	 * @postcondition: A set of the intersection between col and this set is
+	 * @postcondition: A set of the intersection of col and this set is
 	 *                 returned
 	 */
+	Collection intersection(Collection col);
 
-	Collection symmetricDifference(Collection col);
 	/**
 	 * Returns a set of the symmetric difference between col and this set
 	 * 
@@ -108,4 +101,5 @@ public interface CollectionInterface {
 	 * @postcondition: A set of the symmetric difference between col and this
 	 *                 set is returned
 	 */
+	Collection symmetricDifference(Collection col);
 }
