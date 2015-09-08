@@ -10,7 +10,10 @@ public class Collection implements CollectionInterface {
 	}
 
 	public Collection(Collection src){
-		
+		col = new Identifier[MAX_ELEMENTS];
+		for(int i=0; i<src.size();i++){
+			col[i] = src.col[i];
+		}
 	}
 	
 	

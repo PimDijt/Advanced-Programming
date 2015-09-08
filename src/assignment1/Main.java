@@ -1,5 +1,8 @@
 package assignment1;
 
+import java.io.*;
+import java.util.*;
+
 public class Main {
 	/** Strategy for Main.class
 	 * 1. Ask user for input
@@ -9,6 +12,32 @@ public class Main {
 	 * 5. print the results
 	 * 6. ask user for input again (point 1.)
 	 */
+	
+	static final int MAX_IDENTIFIERS_PER_COLLECTION = 10;
+	
+	Scanner in;
+	
+	Main(){
+		in = new Scanner(System.in);
+	}
+	
+	//Asks the user for input
+	void askForInput(Scanner in){
+	}
+	
+	//Checks if the syntax of the input is entered correctly
+	void parseInput() throws Exception{
+	}
+	
+	//Does the 4 operations on the two collections
+	void operations(){
+	}
+	
+	//Prints a Collection
+	void printOutput(Collection col){
+	}
+	
+	//Initializes the program
+	void start(){
+	}
 }
-
-// We need to expand on this plan de campagne
