@@ -16,31 +16,25 @@ public class Identifier implements IdentifierInterface {
 		}
 	}
 	
-	@Override
 	public void init(char c) {
-		// TODO Auto-generated method stub
-
+		id.setLength(0);
+		id.append(c);
 	}
 
-	@Override
 	public void addChar(char c) {
-		// TODO Auto-generated method stub
-
+		id.append(c);
 	}
 
-	@Override
 	public char getChar(int index) {
-		// TODO Auto-generated method stub
-		return 0;
+		char c = id.charAt(index);
+		return c;
 	}
 
-	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		int size = id.length();
+		return size;
 	}
 
-	@Override
 	public boolean isEqual(Identifier id) {
 		// TODO Auto-generated method stub
 		return false;
