@@ -1,11 +1,19 @@
 package assignment1;
 
 public class Collection implements CollectionInterface {
-
+	
+	static final int MAX_ELEMENTS = 20; 
+	Identifier[] col;
+	
 	public Collection() {
-
+		col = new Identifier[MAX_ELEMENTS];
 	}
 
+	public Collection(Collection src){
+		
+	}
+	
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
