@@ -5,9 +5,9 @@ package assignment1;
  *
  * @author Pim Dijt, Rick van Rheenen
  * 
- * @elements Identifiers of type StringBuffer /////DONT KNOW ABOUT STRINGBUFFER
+ * @elements elements of type Identifier
  * @structure none
- * @domain A collection of between 0 and 20 Identifiers /////TURN THIS INTO PUBLIC FINAL CONSTANT
+ * @domain A collection of between 0 and 20 Identifiers 
  * @constructor Collection();
  *              <dl>
  *              <dt><b>PRE-condition</b>
@@ -28,7 +28,7 @@ package assignment1;
 
 public interface CollectionInterface {
 	
-	public final int DOMAIN = 20; ///// Do we also need lower boundary? 	public final int LOW_DOMAIN = 0; 
+	static final int MAX_ELEMENTS = 20; 
 	
 	/**
 	 * Initializes an empty Collection
@@ -52,7 +52,7 @@ public interface CollectionInterface {
 	 * @precondition: -
 	 * @postcondition: The Identifier is added to the collection
 	 */
-	void addIdentifier(Identifier id);
+	void addIdentifier(Identifier id) throws Exception;
 
 	/**
 	 * removes Identifier id from the collection
@@ -63,10 +63,10 @@ public interface CollectionInterface {
 	void removeIdentifier(Identifier id);
 
 	/**
-	 * @precondition: ?
+	 * @precondition: -
 	 * @postcondition: A random Identifier from the collection is returned
 	 */
-	Identifier getIdentifier(Identifier id);
+	Identifier getIdentifier();
 
 	/**
 	 * Returns a set of the difference between col and this set
@@ -81,9 +81,10 @@ public interface CollectionInterface {
 	 * Returns a set of the union between col and this set
 	 * 
 	 * @precondition: -
-	 * @postcondition: A set of the union between col and this set is returned
+	 * @postcondition: 	succes: A set of the union between col and this set is returned
+	 * 					faillure: A correct error message 
 	 */
-	Collection union(Collection col);
+	Collection union(Collection col) throws Exception;
 
 	/**
 	 * Returns a set of the intersection between col and this set

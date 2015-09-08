@@ -24,7 +24,7 @@ class NumberStack implements NumberStackInterface {
 		copyElements(stackArray, src.stackArray, amountElements);
 	}
 
-	void init() {
+	public void init() {
 		amountElements = 0;
 	}
 

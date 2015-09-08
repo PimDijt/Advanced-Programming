@@ -14,8 +14,7 @@ package assignment1;
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>The new Identifier object contains a StringBuffer with one //DONT KNOW ABOUT STRINGBUFFER
- *              character
+ *              <dd>A new Identifier object is created which contains one character
  *              </dl>
  *              <br>
  *              Identifier (Identifier src);
@@ -30,7 +29,7 @@ package assignment1;
 public interface IdentifierInterface {
 
 	/**
-	 * Initializes the Identifier object to an empty StringBuffer //DONT KNOW ABOUT STRINGBUFFER
+	 * Initializes the Identifier object 
 	 * 
 	 * @precondition: c is a char from a-z, A-Z
 	 * @postcondition: The Identifier object is initialized with character c

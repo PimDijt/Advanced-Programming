@@ -30,11 +30,6 @@ public class Collection implements CollectionInterface {
 
 	}
 
-	@Override
-	public Identifier getIdentifier(Identifier id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Collection difference(Collection col) {
@@ -56,6 +51,12 @@ public class Collection implements CollectionInterface {
 
 	@Override
 	public Collection symmetricDifference(Collection col) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Identifier getIdentifier() {
 		// TODO Auto-generated method stub
 		return null;
 	}
