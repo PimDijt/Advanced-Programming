@@ -91,12 +91,31 @@ public class Set implements SetInterface {
 	}
 
 	public Set intersection(Set src) {
-		return null;
+		Set result = new Set();
+		Set foreignSet = new Set(src);
+		
+		while(foreignSet.getSize() > 0){
+			Identifier tmp = foreignSet.getIdentifier();
+			if (this.contains(tmp)){
+				try {
+					result.addIdentifier(tmp);
+				} catch (Exception e) {
+					e.printStackTrace(System.out);
+				}
+			}
+			foreignSet.removeIdentifier(tmp);
+		}
+		
+		return result;
 	}
 
 
 	public Set symmetricDifference(Set src) {
-		return null;
+		Set result = new Set(this);
+		Set foreignSet = new Set(src);
+		
+		
+		return result;
 	}
 
 
