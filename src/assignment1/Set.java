@@ -61,7 +61,7 @@ public class Set implements SetInterface {
 		return null;
 	}
 
-	public Set union(Set set) throws Exception{
+	public Set union(Set set){
 		return null;
 	}
 
