@@ -26,7 +26,7 @@ package assignment1;
  *
  **/
 
-public interface CollectionInterface {
+public interface SetInterface {
 	
 	static final int MAX_ELEMENTS = 20; 
 	
@@ -75,7 +75,7 @@ public interface CollectionInterface {
 	 * @postcondition: A set of the difference between col and this set is
 	 *                 returned
 	 */
-	Collection difference(Collection col);
+	Set difference(Set col);
 
 	/**
 	 * Returns a set of the union between col and this set
@@ -84,7 +84,7 @@ public interface CollectionInterface {
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
 	 * 					faillure: A correct error message 
 	 */
-	Collection union(Collection col) throws Exception;
+	Set union(Set col) throws Exception;
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -93,7 +93,7 @@ public interface CollectionInterface {
 	 * @postcondition: A set of the intersection of col and this set is
 	 *                 returned
 	 */
-	Collection intersection(Collection col);
+	Set intersection(Set col);
 
 	/**
 	 * Returns a set of the symmetric difference between col and this set
@@ -102,5 +102,5 @@ public interface CollectionInterface {
 	 * @postcondition: A set of the symmetric difference between col and this
 	 *                 set is returned
 	 */
-	Collection symmetricDifference(Collection col);
+	Set symmetricDifference(Set col);
 }

@@ -1,23 +1,21 @@
 package assignment1;
 
-public class Collection implements CollectionInterface {
+public class Set implements SetInterface {
 	
 	static final int MAX_ELEMENTS = 20; 
 	Identifier[] col;
 	int size;
 	
-	public Collection(){
+	public Set(){
 		col = new Identifier[MAX_ELEMENTS];
 	}
 
-	public Collection(Collection src){
+	public Set(Set src) {
 		col = new Identifier[MAX_ELEMENTS];
-		for(int i=0; i<src.getSize();i++){
+		for (int i = 0; i < src.getSize(); i++) {
 			col[i] = src.col[i];
 		}
 	}
-	
-	
 
 	public void init() {
 		size = 0;
@@ -32,8 +30,8 @@ public class Collection implements CollectionInterface {
 	}
 	
 	public void addIdentifier(Identifier id) throws Exception {
-		for(int i=0; i<size;i++){
-			if(col[i].isEqualTo(id)){
+		for (int i = 0; i < size; i++) {
+			if (col[i].isEqualTo(id)) {
 				return;
 			}
 		}
@@ -46,20 +44,20 @@ public class Collection implements CollectionInterface {
 			
 	}
 
-	public Collection difference(Collection col) {
+	public Set difference(Set col) {
 		return null;
 	}
 
-	public Collection union(Collection col) throws Exception{
+	public Set union(Set col) throws Exception{
 		return null;
 	}
 
-	public Collection intersection(Collection col) {
+	public Set intersection(Set col) {
 		return null;
 	}
 
 
-	public Collection symmetricDifference(Collection col) {
+	public Set symmetricDifference(Set col) {
 		return null;
 	}
 
