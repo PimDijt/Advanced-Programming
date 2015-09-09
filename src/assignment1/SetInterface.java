@@ -47,11 +47,21 @@ public interface SetInterface {
 	int getSize();
 
 	/**
+	 * Checks whether given identifier is in the set
+	 * 
+	 * @precondition: -
+	 * @postcondition: 	true: identifier is present in set
+	 * 					false: identifier is not present in set
+	 */
+	
+	boolean contains(Identifier id);
+
+	/**
 	 * Adds an Identifier to the collection
 	 * 
 	 * @precondition: -
 	 * @postcondition: The Identifier is added to the collection
-	 */
+	 */	
 	void addIdentifier(Identifier id) throws Exception;
 
 	/**
