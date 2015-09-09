@@ -52,14 +52,14 @@ public class Set implements SetInterface {
 	public void removeIdentifier(Identifier id) {
 		int toRemove = 0;
 		
-		for (int i = 0; i < size; i++){ // Get index of the item that has to be removed
+		for (int i = 0; i < size; i++){ 
 				if (elements[i].isEqualTo(id)){
 					toRemove = i;
 					break;
 				}
 			}
 		
-		for (int i = toRemove; i < size; i++){ // "Remove" items by overwriting by following items
+		for (int i = toRemove; i < size; i++){
 			elements[i] = elements[i+1];
 		}
 		size--;

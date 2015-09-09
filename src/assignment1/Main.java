@@ -13,7 +13,7 @@ public class Main {
 	 * 6. ask user for input again (point 1.)
 	 */
 	
-	static final int MAX_IDENTIFIERS_PER_COLLECTION = 10;
+	public static final int MAX_IDENTIFIERS_PER_COLLECTION = 10;
 	
 	Scanner in;
 	PrintStream out;
@@ -25,6 +25,8 @@ public class Main {
 	
 	//Asks the user for input
 	void askForInput(Scanner in){
+		String input = in.next();
+		
 	}
 	
 	//Checks if the syntax of the input is entered correctly
