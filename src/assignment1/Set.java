@@ -109,12 +109,11 @@ public class Set implements SetInterface {
 		return result;
 	}
 
-
 	public Set symmetricDifference(Set src) {
-		Set result = new Set(this);
 		Set foreignSet = new Set(src);
-		
-		
+		Set union = new Set(this).union(foreignSet);
+		Set intersection = new Set(this).intersection(foreignSet);
+		Set result = union.difference(intersection);
 		return result;
 	}
 
