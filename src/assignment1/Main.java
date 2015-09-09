@@ -36,7 +36,7 @@ public class Main {
 	}
 	
 	//Prints a Collection
-	void printOutput(Set col){
+	void printOutput(Set set){
 	}
 	
 	//Initializes the program
