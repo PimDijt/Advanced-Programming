@@ -3,17 +3,18 @@ package assignment1;
 public class Set implements SetInterface {
 	
 	static final int MAX_ELEMENTS = 20; 
-	Identifier[] col;
-	int size;
+	private Identifier[] elements;
+	private int size;
 	
 	public Set(){
-		col = new Identifier[MAX_ELEMENTS];
+		elements = new Identifier[MAX_ELEMENTS];
+		size = 0;
 	}
 
 	public Set(Set src) {
-		col = new Identifier[MAX_ELEMENTS];
+		elements = new Identifier[MAX_ELEMENTS];
 		for (int i = 0; i < src.getSize(); i++) {
-			col[i] = src.col[i];
+			elements[i] = src.elements[i];
 		}
 	}
 
@@ -31,11 +32,11 @@ public class Set implements SetInterface {
 	
 	public void addIdentifier(Identifier id) throws Exception {
 		for (int i = 0; i < size; i++) {
-			if (col[i].isEqualTo(id)) {
+			if (elements[i].isEqualTo(id)) {
 				return;
 			}
 		}
-		col[size] = id;
+		elements[size] = id;
 		size++;
 	}
 
@@ -44,20 +45,20 @@ public class Set implements SetInterface {
 			
 	}
 
-	public Set difference(Set col) {
+	public Set difference(Set set) {
 		return null;
 	}
 
-	public Set union(Set col) throws Exception{
+	public Set union(Set set) throws Exception{
 		return null;
 	}
 
-	public Set intersection(Set col) {
+	public Set intersection(Set set) {
 		return null;
 	}
 
 
-	public Set symmetricDifference(Set col) {
+	public Set symmetricDifference(Set set) {
 		return null;
 	}
 
