@@ -27,12 +27,16 @@ public class Set implements SetInterface {
 	}
 
 	public boolean contains(Identifier id) {
+		for (int i = 0; i < size; i++){
+			if (elements[i].isEqualTo(id)){
+				return true;
+			}
+		}
 		return false;
 	}
 	
 	public Identifier getIdentifier() {
-		
-		return null;
+		return elements[size-1];
 	}
 	
 	public void addIdentifier(Identifier id) throws Exception {
@@ -69,7 +73,6 @@ public class Set implements SetInterface {
 			result.removeIdentifier(tmp);
 			foreignSet.removeIdentifier(tmp);
 		}
-		
 		return result;
 	}
 
