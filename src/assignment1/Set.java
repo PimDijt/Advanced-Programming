@@ -49,7 +49,7 @@ public class Set implements SetInterface {
 		int toRemove = 0;
 		
 		for (int i = 0; i < size; i++){ // Get index of the item that has to be removed
-				if (elements[i] == id){
+				if (elements[i].isEqualTo(id)){
 					toRemove = i;
 					break;
 				}
