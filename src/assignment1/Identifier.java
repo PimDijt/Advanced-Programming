@@ -11,7 +11,7 @@ public class Identifier implements IdentifierInterface {
 
 	public Identifier(Identifier src){
 		id = new StringBuffer();
-		for(int i=0; i<src.size();i++){
+		for(int i=0; i<src.getSize();i++){
 			id.append(src.getChar(i));
 		}
 	}
@@ -30,13 +30,20 @@ public class Identifier implements IdentifierInterface {
 		return c;
 	}
 
-	public int size() {
-		int size = id.length();
-		return size;
+	public int getSize() {
+		return id.length();
 	}
 
-	public boolean isEqual(Identifier id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqualTo(Identifier identifier) {
+		if(this.getSize()!=identifier.getSize()){
+			return false;
+		}else{
+			for(int i=0; i<this.getSize(); i++){
+				if(this.getChar(i)!=identifier.getChar(i)){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

@@ -61,7 +61,7 @@ public interface IdentifierInterface {
 	 * @precondition: -
 	 * @postcondition: The size of the Identifier is returned
 	 */
-	int size();
+	int getSize();
 
 	/**
 	 * Checks if the two Identifiers are equal to eachother
@@ -70,6 +70,6 @@ public interface IdentifierInterface {
 	 * @postcondition: false: The Identifiers are not equal 
 	 * 				   true: The  Identifiers are equal
 	 */
-	boolean isEqual(Identifier id);
+	boolean isEqualTo(Identifier id);
 
 }

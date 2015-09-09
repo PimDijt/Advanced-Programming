@@ -4,71 +4,64 @@ public class Collection implements CollectionInterface {
 	
 	static final int MAX_ELEMENTS = 20; 
 	Identifier[] col;
+	int size;
 	
-	public Collection() {
+	public Collection(){
 		col = new Identifier[MAX_ELEMENTS];
 	}
 
 	public Collection(Collection src){
 		col = new Identifier[MAX_ELEMENTS];
-		for(int i=0; i<src.size();i++){
+		for(int i=0; i<src.getSize();i++){
 			col[i] = src.col[i];
 		}
 	}
 	
 	
-	@Override
+
 	public void init() {
-		// TODO Auto-generated method stub
-
+		size = 0;
 	}
 
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSize() {
+		return size;
 	}
 
-	@Override
-	public void addIdentifier(Identifier id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeIdentifier(Identifier id) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	@Override
-	public Collection difference(Collection col) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection union(Collection col) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection intersection(Collection col) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection symmetricDifference(Collection col) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Identifier getIdentifier() {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void addIdentifier(Identifier id) throws Exception {
+		for(int i=0; i<size;i++){
+			if(col[i].isEqualTo(id)){
+				return;
+			}
+		}
+		col[size] = id;
+		size++;
+	}
+
+
+	public void removeIdentifier(Identifier id) {
+			
+	}
+
+	public Collection difference(Collection col) {
+		return null;
+	}
+
+	public Collection union(Collection col) throws Exception{
+		return null;
+	}
+
+	public Collection intersection(Collection col) {
+		return null;
+	}
+
+
+	public Collection symmetricDifference(Collection col) {
+		return null;
+	}
+
+
 }

@@ -44,7 +44,7 @@ public interface CollectionInterface {
 	 * @precondition: -
 	 * @postcondition: The amount of Identifiers in the collection is returned
 	 */
-	int size();
+	int getSize();
 
 	/**
 	 * Adds an Identifier to the collection

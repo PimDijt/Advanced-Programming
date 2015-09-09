@@ -16,9 +16,11 @@ public class Main {
 	static final int MAX_IDENTIFIERS_PER_COLLECTION = 10;
 	
 	Scanner in;
+	PrintStream out;
 	
 	Main(){
 		in = new Scanner(System.in);
+		out = new PrintStream(System.out);
 	}
 	
 	//Asks the user for input
