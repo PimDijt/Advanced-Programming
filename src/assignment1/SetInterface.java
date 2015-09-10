@@ -21,10 +21,12 @@ package assignment1;
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>The new Collection object contains a copy of src
+ *              <dd>The new Collection object is a copy of src
  *              </dl>
  *
  **/
+///// Replace collection with set everywhere
+////  symetric difference needs to throw exception
 
 public interface SetInterface {
 	
@@ -90,9 +92,9 @@ public interface SetInterface {
 	/**
 	 * Returns a set of the union between col and this set
 	 * 
-	 * @precondition: -
+	 * @precondition: - Set should not be empty //// Throw exception
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
-	 * 					faillure: A correct error message 
+	 * 					failure: A correct error message 
 	 */
 	Set union(Set col) throws Exception;
 

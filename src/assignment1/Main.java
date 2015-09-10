@@ -43,5 +43,16 @@ public class Main {
 	
 	//Initializes the program
 	void start(){
+		
+	}
+	
+	void do_shit(){
+//		endless_loop{
+//			askForInput
+//			validate_input 
+//			if 2 sets are collected{
+//				perform set actions
+//			}
+//		}
 	}
 }
