@@ -20,10 +20,15 @@ public class Main {
 	PrintStream out;
 	int numberOfSets;
 	
+	Set set1;
+	Set set2;
+	
 	Main(){
 		in = new Scanner(System.in);
 		out = new PrintStream(System.out);
 		numberOfSets = 0;
+		set1 = new Set();
+		set2 = new Set();
 	}
 	
 	//Asks the user for input
@@ -65,35 +70,37 @@ public class Main {
 		return true;
 	}
 	
-	void parseIdentifiers(Scanner line){
+	void parseIdentifiers(Scanner line) throws Exception{
 		line.useDelimiter(" ");
 		while(line.hasNext()){
 			Scanner id = new Scanner(line.next());
 			if(checkValidCharacters(id)){
-				makeIdentifier(id);
+				Identifier identifier = makeIdentifier(id);
 			}
 		}
 	}
 	
-	void makeIdentifier(Scanner in){
+	Identifier makeIdentifier(Scanner in){
 		in.useDelimiter("");
 		Identifier id = new Identifier();
 		while(in.hasNext()){
 			id.addChar(in.next().charAt(0));
 		}
+		return id;
 	}
 	
-	boolean checkValidCharacters(Scanner id){
+	boolean checkValidCharacters(Scanner id) throws Exception{
 		id.useDelimiter("");
 		if(nextCharIsLetter(id)){
 			while(id.hasNext()){
-				if(!(nextCharIsLetter(id) || nextCharIsDigit(id))){
-					return false;
+				if(!(nextCharIsLetter(id)) && !(nextCharIsDigit(id))){
+					throw new Exception("Identifiers can only consist of letters and numbers");
 				}
 			}
-			return true;
+		}else{
+			throw new Exception("Every Identifier has to start with a letter");
 		}
-		return false;
+		return true;
 	}
 	
 	boolean nextCharIsLetter (Scanner in) {
