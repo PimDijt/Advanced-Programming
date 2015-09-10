@@ -37,6 +37,7 @@ public class Set implements SetInterface {
 	
 	public Identifier getIdentifier() {
 		return elements[size-1];
+		//// Shouldn't this be random?
 	}
 	
 	public void addIdentifier(Identifier id) throws Exception {
