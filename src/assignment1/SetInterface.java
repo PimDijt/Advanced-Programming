@@ -25,26 +25,24 @@ package assignment1;
  *              </dl>
  *
  **/
-///// Replace collection with set everywhere
-////  symetric difference needs to throw exception
 
 public interface SetInterface {
 	
 	static final int MAX_ELEMENTS = 20; 
 	
 	/**
-	 * Initializes an empty Collection
+	 * Initializes an empty set
 	 * 
 	 * @precondition: -
-	 * @postcondition: The collection is initialized as an empty collection
+	 * @postcondition: The set is initialized as an empty collection
 	 */
 	void init();
 			
 	/**
-	 * Return the size of the Collection
+	 * Return the size of the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: The amount of Identifiers in the collection is returned
+	 * @postcondition: The amount of Identifiers in the set is returned
 	 */
 	int getSize();
 
@@ -59,10 +57,11 @@ public interface SetInterface {
 	boolean contains(Identifier id);
 
 	/**
-	 * Adds an Identifier to the collection
+	 * Adds an Identifier to the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: The Identifier is added to the collection
+	 * @postcondition: succes: The Identifier is added to the set
+	 * 				   failure: An exception is thrown
 	 */	
 	void addIdentifier(Identifier id) throws Exception;
 
@@ -75,7 +74,7 @@ public interface SetInterface {
 	void removeIdentifier(Identifier id);
 
 	/**
-	 * @precondition: -
+	 * @precondition: The set contains 1 or more elements
 	 * @postcondition: A random Identifier from the collection is returned
 	 */
 	Identifier getIdentifier();
@@ -92,15 +91,15 @@ public interface SetInterface {
 	/**
 	 * Returns a set of the union between col and this set
 	 * 
-	 * @precondition: - Set should not be empty //// Throw exception
+	 * @precondition: - Set should not be empty 
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
-	 * 					failure: A correct error message 
+	 * 					failure: An exception is thrown
 	 */
 	Set union(Set col) throws Exception;
 
 	/**
 	 * Returns a set of the intersection between col and this set
-	 * 			/////NB: WATCH THAT THE UNION MIGHT EXCEED 20!! Success/failure 
+	 * 		
 	 * @precondition: -
 	 * @postcondition: A set of the intersection of col and this set is
 	 *                 returned
@@ -111,8 +110,9 @@ public interface SetInterface {
 	 * Returns a set of the symmetric difference between col and this set
 	 * 
 	 * @precondition: -
-	 * @postcondition: A set of the symmetric difference between col and this
+	 * @postcondition: succes: A set of the symmetric difference between col and this
 	 *                 set is returned
+	 *                 failure: An exception is thrown
 	 */
-	Set symmetricDifference(Set col);
+	Set symmetricDifference(Set col) throws Exception;
 }
