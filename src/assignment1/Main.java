@@ -15,105 +15,20 @@ public class Main {
 	 */
 	
 	public static final int MAX_IDENTIFIERS_PER_COLLECTION = 10;
-	
-	Scanner in;
 	PrintStream out;
-	int numberOfSets;
-	
-	Set set1;
-	Set set2;
 	
 	Main(){
-		in = new Scanner(System.in);
 		out = new PrintStream(System.out);
-		numberOfSets = 0;
-		set1 = new Set();
-		set2 = new Set();
 	}
-	
-	// Asks the user for input
-	void askForInput(int numberOfSets){
-		if(numberOfSets == 0){
-			out.println("Give the first set: ");
-		}else{
-			out.println("Give the second set: ");
-		}
-	}
-	
-	// Checks if the syntax of the input is entered correctly
-	void parseInput() throws Exception {
-		in.useDelimiter("");
-		String line = in.nextLine();
-		if (checkBracketSyntax(line)) {
-			line = line.substring(1, line.length() - 1);
-			Scanner elements = new Scanner(line);
-			parseIdentifiers(elements);
-		}
-	}
-	
-	// 
-	void parseIdentifiers(Scanner line) throws Exception{
-		line.useDelimiter(" ");
-		while(line.hasNext()){
-			Scanner id = new Scanner(line.next());
-			if(checkValidCharacters(id)){
-				Identifier identifier = makeIdentifier(id);
-			}
-		}
-	}
-
-	// Checks whether the brackets are correctly entered.
-	boolean checkBracketSyntax(String line) throws Exception {
-		char first = line.charAt(0);
-		char last = line.charAt(line.length() - 1);
-		if (first != '{') {
-			throw new Exception("Missing first bracket");
-		} else if (last != '}') {
-			throw new Exception("Missing last bracket");
-		}
-		return true;
-	}
-	
-	// Check whether characters are legit
-	boolean checkValidCharacters(Scanner id) throws Exception{
-		id.useDelimiter("");
-		if(nextCharIsLetter(id)){
-			while(id.hasNext()){
-				if(!(nextCharIsLetter(id)) && !(nextCharIsDigit(id))){
-					throw new Exception("Identifiers can only consist of letters and numbers");
-				}
-			}
-		}else{
-			throw new Exception("Every Identifier has to start with a letter");
-		}
-		return true;
-	}
-	
-	// Checks if next input has been entered
-	boolean checkFilled(){
-		if(!in.hasNext()){
-			return false;
-		}
-		return true;
-	}
-	
-	//Creates new identifier
-	Identifier makeIdentifier(Scanner in){
-		in.useDelimiter("");
-		Identifier id = new Identifier();
-		while(in.hasNext()){
-			id.addChar(in.next().charAt(0));
-		}
-		return id;
-	}
-	
+		
 	boolean nextCharIsLetter (Scanner in) {
 		return in.hasNext("[a-zA-Z]");
 	}
 	
-	boolean nextCharIsDigit (Scanner in) {
+	boolean nextCharIsDigit(Scanner in) {
 		return in.hasNext("[0-9]");
-		}
+	}
+
 	char nextChar (Scanner in) {
 		return in.next().charAt(0);
 	}
@@ -130,24 +45,81 @@ public class Main {
 	void printOutput(Set set){
 	}
 	
-	void manageInput(){
-		do{
-			askForInput(numberOfSets);
-		}while(!checkFilled());
-
-		try{
-			parseInput();
-		}catch (Exception e){
-			out.println(e.toString());
-		}
+	//Initializes the program
+	
+	void progLoop(){
+		Set set1 = processInput("Give first set: ");
+		Set set2 = processInput("Give second set: ");		
 	}
 	
-	//Initializes the program
-	void start(){
+	Set processInput(String prompt) {
+		Scanner in = new Scanner(System.in);
 		do {
-			manageInput();
-			performOperations();
-		} while(true);
+			out.printf("%s", prompt);
+			String line = in.nextLine();
+			if (checkSyntax(line)) { // Check if brackets are okay
+				
+				Set curSet = parseIdentifiers(line);
+				if (curSet != null) {
+					return curSet;
+				}
+			}
+		} while (true);
+	}
+	
+	boolean checkSyntax(String line){
+		if(line.isEmpty()){
+			return false;
+		}
+		char first = line.charAt(0);
+		char last = line.charAt(line.length() - 1);
+		if (first != '{') {
+			out.printf("The set has to start with a '{'.\n");
+			return false;
+		} else if (last != '}') {
+			out.printf("The set has to end with a '}'.\n");
+			return false;
+		}
+		return true;
+	}
+	
+	Set parseIdentifiers(String line){
+		Set curSet = new Set();
+		line = line.substring(1, line.length() - 1);
+		Scanner elements = new Scanner(line);
+		elements.useDelimiter(" ");
+		while(elements.hasNext()){
+			Scanner element = new Scanner(elements.next());
+			element.useDelimiter("");
+			if(nextCharIsLetter(element)){
+				Identifier id = new Identifier();
+				id.init(nextChar(element));
+				while(element.hasNext()){
+					if(nextCharIsLetter(element) || nextCharIsDigit(element)){
+						id.addChar(nextChar(element));
+					}else{
+						out.printf("Identifiers can only contain letters or digits\n");
+						return null;
+					}
+				}
+				try {
+					curSet.addIdentifier(id);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+				out.printf("Identifiers have to start with a letter.\n");
+				return null;
+			}
+		}
+		return curSet;
+	}
+	
+	void start(){
+		//do
+		progLoop();
+		//while(true);
 	}
 	
 	public static void main(String[] args){
