@@ -31,7 +31,7 @@ public class Main {
 		set2 = new Set();
 	}
 	
-	//Asks the user for input
+	// Asks the user for input
 	void askForInput(int numberOfSets){
 		if(numberOfSets == 0){
 			out.println("Give the first set: ");
@@ -107,7 +107,6 @@ public class Main {
 		return id;
 	}
 	
-	
 	boolean nextCharIsLetter (Scanner in) {
 		return in.hasNext("[a-zA-Z]");
 	}
@@ -118,15 +117,13 @@ public class Main {
 	char nextChar (Scanner in) {
 		return in.next().charAt(0);
 	}
-
 	
 	boolean nextCharIs(Scanner in, char c) {
 		return in.hasNext(Pattern.quote(c+""));
 	}
 
-	
 	//Does the 4 operations on the two collections
-	void operations(){
+	void performOperations(){
 	}
 	
 	//Prints a Collection
@@ -149,6 +146,7 @@ public class Main {
 	void start(){
 		do {
 			manageInput();
+			performOperations();
 		} while(true);
 	}
 	
