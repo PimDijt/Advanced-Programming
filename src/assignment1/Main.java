@@ -40,13 +40,6 @@ public class Main {
 		}
 	}
 	
-	boolean checkFilled(){
-		if(!in.hasNext()){
-			return false;
-		}
-		return true;
-	}
-	
 	// Checks if the syntax of the input is entered correctly
 	void parseInput() throws Exception {
 		in.useDelimiter("");
@@ -57,8 +50,19 @@ public class Main {
 			parseIdentifiers(elements);
 		}
 	}
-
 	
+	// 
+	void parseIdentifiers(Scanner line) throws Exception{
+		line.useDelimiter(" ");
+		while(line.hasNext()){
+			Scanner id = new Scanner(line.next());
+			if(checkValidCharacters(id)){
+				Identifier identifier = makeIdentifier(id);
+			}
+		}
+	}
+
+	// Checks whether the brackets are correctly entered.
 	boolean checkBracketSyntax(String line) throws Exception {
 		char first = line.charAt(0);
 		char last = line.charAt(line.length() - 1);
@@ -70,25 +74,7 @@ public class Main {
 		return true;
 	}
 	
-	void parseIdentifiers(Scanner line) throws Exception{
-		line.useDelimiter(" ");
-		while(line.hasNext()){
-			Scanner id = new Scanner(line.next());
-			if(checkValidCharacters(id)){
-				Identifier identifier = makeIdentifier(id);
-			}
-		}
-	}
-	
-	Identifier makeIdentifier(Scanner in){
-		in.useDelimiter("");
-		Identifier id = new Identifier();
-		while(in.hasNext()){
-			id.addChar(in.next().charAt(0));
-		}
-		return id;
-	}
-	
+	// Check whether characters are legit
 	boolean checkValidCharacters(Scanner id) throws Exception{
 		id.useDelimiter("");
 		if(nextCharIsLetter(id)){
@@ -102,6 +88,25 @@ public class Main {
 		}
 		return true;
 	}
+	
+	// Checks if next input has been entered
+	boolean checkFilled(){
+		if(!in.hasNext()){
+			return false;
+		}
+		return true;
+	}
+	
+	//Creates new identifier
+	Identifier makeIdentifier(Scanner in){
+		in.useDelimiter("");
+		Identifier id = new Identifier();
+		while(in.hasNext()){
+			id.addChar(in.next().charAt(0));
+		}
+		return id;
+	}
+	
 	
 	boolean nextCharIsLetter (Scanner in) {
 		return in.hasNext("[a-zA-Z]");
@@ -128,7 +133,7 @@ public class Main {
 	void printOutput(Set set){
 	}
 	
-	void operator(){
+	void manageInput(){
 		do{
 			askForInput(numberOfSets);
 		}while(!checkFilled());
@@ -143,20 +148,11 @@ public class Main {
 	//Initializes the program
 	void start(){
 		do {
-			operator();
+			manageInput();
 		} while(true);
 	}
 	
 	public static void main(String[] args){
 		new Main().start();
-	}
-	
+	}	
 }
-		
-		//		endless_loop{
-//			askForInput
-//			validate_input 
-//			if 2 sets are collected{
-//				perform set actions
-//			}
-//		}
