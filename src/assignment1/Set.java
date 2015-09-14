@@ -37,7 +37,6 @@ public class Set implements SetInterface {
 	
 	public Identifier getIdentifier() {
 		return elements[size-1];
-		//// Shouldn't this be random?
 	}
 	
 	public void addIdentifier(Identifier id) throws Exception {
@@ -77,7 +76,7 @@ public class Set implements SetInterface {
 		return result;
 	}
 
-	public Set union(Set src) throws Exception {
+	public Set union(Set src) {
 		Set result = new Set(this);
 		Set foreignSet = new Set(src);
 		while (foreignSet.getSize() > 0) {
@@ -109,11 +108,10 @@ public class Set implements SetInterface {
 			}
 			foreignSet.removeIdentifier(tmp);
 		}
-		
 		return result;
 	}
 
-	public Set symmetricDifference(Set src) throws Exception {
+	public Set symmetricDifference(Set src) {
 		Set foreignSet = new Set(src);
 		Set union = new Set(this).union(foreignSet);
 		Set intersection = new Set(this).intersection(foreignSet);

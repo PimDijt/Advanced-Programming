@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class Main {
+public class OldMain {
 	/** Strategy for Main.class
 	 * 1. Ask user for input
 	 * 2. Check if input is in correct syntax
@@ -23,7 +23,7 @@ public class Main {
 	Set set1;
 	Set set2;
 	
-	Main(){
+	OldMain(){
 		in = new Scanner(System.in);
 		out = new PrintStream(System.out);
 		numberOfSets = 0;
@@ -147,6 +147,6 @@ public class Main {
 	}
 	
 	public static void main(String[] args){
-		new Main().start();
+		new OldMain().start();
 	}	
 }

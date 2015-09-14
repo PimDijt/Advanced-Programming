@@ -13,7 +13,7 @@ public class Main {
 	 * 5. print the results
 	 * 6. ask user for input again (point 1.)
 	 */
-	
+		
 	public static final int MAX_IDENTIFIERS_PER_COLLECTION = 10;
 	PrintStream out;
 	
@@ -21,21 +21,12 @@ public class Main {
 		out = new PrintStream(System.out);
 	}
 		
-	boolean nextCharIsLetter (Scanner in) {
-		return in.hasNext("[a-zA-Z]");
+	void start(){
+		//do
+		progLoop();
+		//while(true);
 	}
 	
-	boolean nextCharIsDigit(Scanner in) {
-		return in.hasNext("[0-9]");
-	}
-
-	char nextChar (Scanner in) {
-		return in.next().charAt(0);
-	}
-	
-	boolean nextCharIs(Scanner in, char c) {
-		return in.hasNext(Pattern.quote(c+""));
-	}
 
 	//Does the 4 operations on the two collections
 	void performOperations(){
@@ -45,11 +36,10 @@ public class Main {
 	void printOutput(Set set){
 	}
 	
-	//Initializes the program
-	
 	void progLoop(){
 		Set set1 = processInput("Give first set: ");
-		Set set2 = processInput("Give second set: ");		
+		Set set2 = processInput("Give second set: ");
+		performOperations(set1, set2);
 	}
 	
 	Set processInput(String prompt) {
@@ -57,8 +47,7 @@ public class Main {
 		do {
 			out.printf("%s", prompt);
 			String line = in.nextLine();
-			if (checkSyntax(line)) { // Check if brackets are okay
-				
+			if (checkSyntax(line)) { 
 				Set curSet = parseIdentifiers(line);
 				if (curSet != null) {
 					return curSet;
@@ -105,7 +94,6 @@ public class Main {
 				try {
 					curSet.addIdentifier(id);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}else{
@@ -116,10 +104,37 @@ public class Main {
 		return curSet;
 	}
 	
-	void start(){
-		//do
-		progLoop();
-		//while(true);
+	boolean nextCharIsLetter (Scanner in) {
+		return in.hasNext("[a-zA-Z]");
+	}
+	
+	boolean nextCharIsDigit(Scanner in) {
+		return in.hasNext("[0-9]");
+	}
+	
+	char nextChar (Scanner in) {
+		return in.next().charAt(0);
+	}
+	
+	boolean nextCharIs(Scanner in, char c) {
+		return in.hasNext(Pattern.quote(c+""));
+	}
+	
+	void performOperations(Set set1, Set set2){
+		Set difference = set1.difference(set2);
+		Set intersection = set1.intersection(set2);
+		Set union = set1.union(set2);
+		Set symDifference = set1.symmetricDifference(set2);
+		
+		out.printf("difference = %s", stringifySet(difference));
+		out.printf("intersection = %s", stringifySet(intersection));
+		out.printf("union = %s", stringifySet(union));
+		out.printf("sym. diff.  = %s", stringifySet(symDifference));
+	}
+	
+	String stringifySet(Set set){
+		// Make it return the set as a string between {}
+		return null;
 	}
 	
 	public static void main(String[] args){

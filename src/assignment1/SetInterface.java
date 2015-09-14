@@ -95,7 +95,7 @@ public interface SetInterface {
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
 	 * 					failure: An exception is thrown
 	 */
-	Set union(Set col) throws Exception;
+	Set union(Set col);
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -114,5 +114,5 @@ public interface SetInterface {
 	 *                 set is returned
 	 *                 failure: An exception is thrown
 	 */
-	Set symmetricDifference(Set col) throws Exception;
+	Set symmetricDifference(Set col);
 }
