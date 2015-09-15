@@ -11,15 +11,13 @@ public class Set implements SetInterface {
 		size = 0;
 	}
 
-	public Set(Set src) {
-		Set set = new Set();
+	public Set(Set src)  {
+		elements = new Identifier[MAX_ELEMENTS];
+		size = 0;
 		for(int i=0; i<src.getSize(); i++){
-			try {
-				set.addIdentifier(new Identifier(src.elements[i]));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Identifier identifier = new Identifier(src.elements[i]);
+			elements[i]=identifier;
+			size++;
 		}
 	}
 
@@ -74,7 +72,9 @@ public class Set implements SetInterface {
 		Set foreignSet = new Set(src);
 		while (foreignSet.getSize() > 0) {
 			Identifier tmp = foreignSet.getIdentifier();
-			result.removeIdentifier(tmp);
+			if(result.contains(tmp)){
+				result.removeIdentifier(tmp);
+			}
 			foreignSet.removeIdentifier(tmp);
 		}
 		return result;
@@ -98,20 +98,18 @@ public class Set implements SetInterface {
 	}
 
 	public Set intersection(Set src) {
-		Set result = new Set();
+		Set thisSet = new Set(this);
+		Set result = new Set(this);
 		Set foreignSet = new Set(src);
 		
 		while(foreignSet.getSize() > 0){
 			Identifier tmp = foreignSet.getIdentifier();
-			if (this.contains(tmp)){
-				try {
-					result.addIdentifier(tmp);
-				} catch (Exception e) {
-					e.printStackTrace(System.out);
-				}
+			if (!result.contains(tmp)){
+				result.removeIdentifier(tmp);
 			}
 			foreignSet.removeIdentifier(tmp);
 		}
+		
 		return result;
 	}
 

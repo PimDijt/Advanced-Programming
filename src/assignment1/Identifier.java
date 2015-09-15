@@ -9,7 +9,7 @@ public class Identifier implements IdentifierInterface {
 		id.append('a');
 	}
 
-	public Identifier(Identifier src) {
+	public Identifier(Identifier src){
 		id = new StringBuffer();
 		for (int i = 0; i < src.getSize(); i++) {
 			id.append(src.getChar(i));

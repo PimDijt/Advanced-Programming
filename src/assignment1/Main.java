@@ -29,15 +29,6 @@ public class Main {
 		//hasNextLine
 	}
 	
-
-	//Does the 4 operations on the two collections
-	void performOperations(){
-	}
-	
-	//Prints a Collection
-	void printOutput(Set set){
-	}
-	
 	void progLoop(){
 		Set set1 = processInput("Give first set: ");
 		Set set2 = processInput("Give second set: ");
@@ -164,13 +155,11 @@ public class Main {
 		return in.hasNext(Pattern.quote(c+""));
 	}
 	
-	void performOperations(Set set1, Set set2){
-		out.printf("%s\n", stringifySet(set1));
-		out.printf("%s\n", stringifySet(set2));
+	void performOperations(Set set1, Set set2){		
 		Set difference = set1.difference(set2);
-		out.printf("%s\n", stringifySet(set1));
-		out.printf("%s\n", stringifySet(set2));
-		out.printf("%s difference", stringifySet(difference));
+		Set intersection = set1.intersection(set2);
+		out.printf("difference: %s\n", stringifySet(difference));
+		out.printf("intersection: %s\n", stringifySet(intersection));
 		
 		/*
 		Set intersection = set1.intersection(set2);
@@ -185,11 +174,13 @@ public class Main {
 	}
 	
 	String stringifySet(Set set){
+		Set result = new Set(set);
+		
 		String line = "{";
-		int setSize = set.getSize();
+		int setSize = result.getSize();
 		for(int i=0; i<setSize; i++){
-			Identifier id = set.getIdentifier();
-			set.removeIdentifier(id);
+			Identifier id = result.getIdentifier();
+			result.removeIdentifier(id);
 			for(int j=0; j<id.getSize(); j++){
 				line += id.getChar(j);
 			}
