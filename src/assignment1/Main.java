@@ -22,19 +22,14 @@ public class Main {
 	}
 		
 	void start(){
-		//do
+		do{
 		progLoop();
-		//while(true);
-		
-		//hasNextLine
+		}while(true);
 	}
 	
 	void progLoop(){
 		Set set1 = processInput("Give first set: ");
 		Set set2 = processInput("Give second set: ");
-		
-		//out.printf("%s\n", stringifySet(set1));
-		//out.printf("%s\n", stringifySet(set2));
 		
 		performOperations(set1, set2);
 	}
@@ -46,7 +41,6 @@ public class Main {
 			String line = in.nextLine();
 			if (checkSyntax(line)) { 
 				Set curSet = parseIdentifiers(line);
-//				out.printf("%s\n", stringifySet(curSet));
 				if (curSet != null) {
 					return curSet;
 				}
@@ -94,28 +88,6 @@ public class Main {
 			}else{
 				return null;
 			}
-			/*
-			if(nextCharIsLetter(element)){
-				Identifier id = new Identifier();
-				id.init(nextChar(element));
-				while(element.hasNext()){
-					if(nextCharIsLetter(element) || nextCharIsDigit(element)){
-						id.addChar(nextChar(element));
-					}else{
-						out.printf("Identifiers can only contain letters or digits\n");
-						return null;
-					}
-				}
-				try {
-					curSet.addIdentifier(id);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}else{
-				out.printf("Identifiers have to start with a letter.\n");
-				return null;
-			}
-			*/
 		}
 		return curSet;
 	}
@@ -158,33 +130,29 @@ public class Main {
 	void performOperations(Set set1, Set set2){		
 		Set difference = set1.difference(set2);
 		Set intersection = set1.intersection(set2);
+		Set union = set1.union(set2);
+		Set symdif = set1.symmetricDifference(set2);
 		out.printf("difference: %s\n", stringifySet(difference));
 		out.printf("intersection: %s\n", stringifySet(intersection));
-		
-		/*
-		Set intersection = set1.intersection(set2);
-		Set union = set1.union(set2);
-		Set symDifference = set1.symmetricDifference(set2);
-		
-		out.printf("difference = %s\n", stringifySet(difference));
-		out.printf("intersection = %s\n", stringifySet(intersection));
-		out.printf("union = %s\n", stringifySet(union));
-		out.printf("sym. diff.  = %s\n", stringifySet(symDifference));
-		*/
+		out.printf("union: %s\n", stringifySet(union));
+		out.printf("symmetric difference: %s\n", stringifySet(symdif));
 	}
 	
 	String stringifySet(Set set){
 		Set result = new Set(set);
-		
 		String line = "{";
 		int setSize = result.getSize();
+		int spaceCheck = setSize-1;
 		for(int i=0; i<setSize; i++){
 			Identifier id = result.getIdentifier();
 			result.removeIdentifier(id);
 			for(int j=0; j<id.getSize(); j++){
 				line += id.getChar(j);
 			}
-			line += " ";
+			if(spaceCheck>0){
+				line += " ";
+				spaceCheck--;
+			}
 		}
 		line += "}";
 		return line;

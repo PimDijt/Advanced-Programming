@@ -80,6 +80,27 @@ public class Set implements SetInterface {
 		return result;
 	}
 
+	public Set intersection(Set src) {
+		Set thisSet = new Set(this);
+		Set result = new Set();
+		Set foreignSet = new Set(src);
+		
+		while(foreignSet.getSize() > 0){
+			Identifier tmp = foreignSet.getIdentifier();
+			if (thisSet.contains(tmp)){
+				try {
+					result.addIdentifier(tmp);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			foreignSet.removeIdentifier(tmp);
+		}
+		
+		return result;
+	}
+	
 	public Set union(Set src) {
 		Set result = new Set(this);
 		Set foreignSet = new Set(src);
@@ -94,22 +115,6 @@ public class Set implements SetInterface {
 				}
 			}
 		}
-		return result;
-	}
-
-	public Set intersection(Set src) {
-		Set thisSet = new Set(this);
-		Set result = new Set(this);
-		Set foreignSet = new Set(src);
-		
-		while(foreignSet.getSize() > 0){
-			Identifier tmp = foreignSet.getIdentifier();
-			if (!result.contains(tmp)){
-				result.removeIdentifier(tmp);
-			}
-			foreignSet.removeIdentifier(tmp);
-		}
-		
 		return result;
 	}
 
