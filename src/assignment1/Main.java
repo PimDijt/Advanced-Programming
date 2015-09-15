@@ -28,8 +28,8 @@ public class Main {
 	}
 	
 	void progLoop(){
-		Set set1 = processInput("Give first set: ");
-		Set set2 = processInput("Give second set: ");
+		Set set1 = processInput("Give first set : ");
+		Set set2 = processInput("Give second set : ");
 		
 		performOperations(set1, set2);
 	}
@@ -132,10 +132,10 @@ public class Main {
 		Set intersection = set1.intersection(set2);
 		Set union = set1.union(set2);
 		Set symdif = set1.symmetricDifference(set2);
-		out.printf("difference: %s\n", stringifySet(difference));
-		out.printf("intersection: %s\n", stringifySet(intersection));
-		out.printf("union: %s\n", stringifySet(union));
-		out.printf("symmetric difference: %s\n", stringifySet(symdif));
+		out.printf("difference = %s\n", stringifySet(difference));
+		out.printf("intersection = %s\n", stringifySet(intersection));
+		out.printf("union = %s\n", stringifySet(union));
+		out.printf("symm. diff. = %s\n\n", stringifySet(symdif));
 	}
 	
 	String stringifySet(Set set){
