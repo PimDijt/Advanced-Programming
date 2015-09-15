@@ -2,7 +2,7 @@ package assignment1;
 
 public class Set implements SetInterface {
 	
-	static final int MAX_ELEMENTS = 20; 
+	public static final int MAX_ELEMENTS = 20; 
 	private Identifier[] elements;
 	private int size;
 	
@@ -12,9 +12,14 @@ public class Set implements SetInterface {
 	}
 
 	public Set(Set src) {
-		elements = new Identifier[MAX_ELEMENTS];
-		for (int i = 0; i < src.getSize(); i++) {
-			elements[i] = src.elements[i];
+		Set set = new Set();
+		for(int i=0; i<src.getSize(); i++){
+			try {
+				set.addIdentifier(new Identifier(src.elements[i]));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -51,7 +56,6 @@ public class Set implements SetInterface {
 
 	public void removeIdentifier(Identifier id) {
 		int toRemove = 0;
-		
 		for (int i = 0; i < size; i++){ 
 				if (elements[i].isEqualTo(id)){
 					toRemove = i;
