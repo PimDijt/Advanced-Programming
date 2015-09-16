@@ -14,23 +14,12 @@ public class Main {
 	}
 		
 	void start(){
-/*		while (true) {
+		while (true) {
 			Set set1 = processInput("Give first set : ");
 			Set set2 = processInput("Give second set : ");		
 			performOperations(set1, set2);
 		}
- */		
-		// The above was commented away to make place for the following
-		// This also requires performOperations to return a (very irrelevant) true.
-		// Note that both work just dandy.
-		Set set1 = new Set();
-		Set set2 = new Set();
-
-		do {
-			set1 = processInput("Give first set : ");
-			set2 = processInput("Give second set : ");		
-		} while (performOperations(set1, set2));
-	}
+ 	}
 	
 	Set processInput(String prompt) {
 		Scanner in = new Scanner(System.in);
@@ -103,7 +92,7 @@ public class Main {
 		return id; 
 	}
 	
-	boolean performOperations(Set set1, Set set2) {
+	void performOperations(Set set1, Set set2) {
 		Set difference = set1.difference(set2);
 		Set intersection = set1.intersection(set2);
 		Set union = set1.union(set2);
@@ -113,29 +102,23 @@ public class Main {
 		out.printf("intersection = %s\n", stringifySet(intersection));
 		out.printf("union = %s\n", stringifySet(union));
 		out.printf("symm. diff. = %s\n\n", stringifySet(symdif));
-		return true;
 	}
 	
 	String stringifySet(Set set) {
 		Set result = new Set(set);
 		String line = "{";
 		int setSize = result.getSize();
-		int spaceCheck = setSize - 1;
 		for (int i = 0; i < setSize; i++) {
 			Identifier id = result.getIdentifier();
 			result.removeIdentifier(id);
 			for (int j = 0; j < id.getSize(); j++) {
 				line += id.getChar(j);
 			}
-			if (spaceCheck > 0) {
-				line += " ";
-				spaceCheck--;
-			}
+			line += (setSize - i > 1) ? " " : "}";
 		}
-		line += "}";
 		return line;
 	}
-	
+		
 	boolean nextCharIsLetter (Scanner in) {
 		return in.hasNext("[a-zA-Z]");
 	}
