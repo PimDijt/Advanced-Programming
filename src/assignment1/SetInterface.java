@@ -91,11 +91,13 @@ public interface SetInterface {
 	/**
 	 * Returns a set of the union between col and this set
 	 * 
+	 * Exception is thrown when union result exceeds 20 elements.
+	 * 
 	 * @precondition: - Set should not be empty 
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
 	 * 					failure: An exception is thrown
 	 */
-	Set union(Set col) throws Exception; //Explain why Exception is thrown
+	Set union(Set col) throws Exception;
 
 	/**
 	 * Returns a set of the intersection between col and this set
