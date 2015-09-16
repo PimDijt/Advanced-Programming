@@ -1,0 +1,59 @@
+/Dit is de testinvoer voor de tweede opgave van het prakticum Voortgezet
+/Programmeren. Een voltooid programma mag pas worden ingeleverd als al de
+/onderstaande invoer correct verwerkt wordt.
+/
+/START TESTINVOER
+/Geeft het programma een foutmelding bij een lege regel?
+
+/Een aantal simpele testen van de operatoren
+Aap = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+? Aap
+Noot = {1, 3, 5, 7, 9, 1234567890, 13, 15, 17, 98765432100 }
+/Worden spaties genegeerd?
+?          Noot
+? Aap + Noot
+? Aap * Noot
+? Aap - Noot
+? Aap | Noot
+/ kijk of de prioriteiten goed zijn
+? {1, 2, 3} + {4, 5, 6}*{3, 4  }
+? {1, 2, 3} + {4, 5} | {2, 3, 4} 
+/de volgende statement moet tot een foutmelding leiden
+Aap = (({1, 2, 3})
+/wat is Aap nu? Nog steeds {1..9} ?
+?Aap
+/ nu een hele gemene test; wordt de '/' goed verwerkt
+Mies = {12, 345, 65, 67, 5, 435, 879, 90, 867} / deze slash mag hier niet staan!
++ {1, 45, 12, 342, 546}
+/Bovenstaande twee regels mogen nu niet verwerkt zijn alsof er
+/"Mies = {12, 345, 65, 67, 5, 435, 879, 90, 867} + {1, 45, 12, 342, 546}" stond
+/Dus moet de variabele Mies onbekend zijn:
+? Mies
+/Onderstaande regel bevat twee assignments en is volgens de syntax
+/dus geen statement.
+Aap = {1, 10, 100, 1000}          Wim = {3, 4}
+/Aap moet nog steeds {1..9} zijn
+? Aap
+Noot = Aap
+Aap = {1, 2, 5}     
+/nu Aap veranderd is mag Noot niet veranderd zijn
+/is Noot nog steeds {1..9}
+? Noot
+? {}
+Wim = Aap        + Aap + {     }*Noot*(Aap + Noot)
+/Wim is nu gelijk aan Aap
+?Wim
+Wim = Wim
+/Is Wim ongewijzigd?
+?                          Wim
+X = ((({1, 2, 3} + {4, 5, 6} * {4, 5})) * ({2, 3}))
+     /X bevat nu {2, 3}
+? X
+/Kunnen de operatoren tegen lege verzamelingen?
+? { } * {}
+? {}  | {}
+/Pas op! Dit zijn niet de laatste twee regels.
+/Hieronder staan nog drie regels => drie foutmeldingen bij verwerken.
+          
+
+
