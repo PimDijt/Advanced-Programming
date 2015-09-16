@@ -5,15 +5,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class Main {
-	/** Strategy for Main.class
-	 * 1. Ask user for input
-	 * 2. Check if input is in correct syntax
-	 * 3. If not, throw exceptions with proper error messages and let user try again
-	 * 4. Execute the various operations 
-	 * 5. print the results
-	 * 6. ask user for input again (point 1.)
-	 */
-		
+
 	public static final int MAX_IDENTIFIERS_PER_SET = 10;
 	PrintStream out;
 	
@@ -22,16 +14,22 @@ public class Main {
 	}
 		
 	void start(){
-		while (true) {
-			progLoop();
+/*		while (true) {
+			Set set1 = processInput("Give first set : ");
+			Set set2 = processInput("Give second set : ");		
+			performOperations(set1, set2);
 		}
-	}
-	
-	void progLoop(){
-		Set set1 = processInput("Give first set : ");
-		Set set2 = processInput("Give second set : ");
-		
-		performOperations(set1, set2);
+ */		
+		// The above was commented away to make place for the following
+		// This also requires performOperations to return a (very irrelevant) true.
+		// Note that both work just dandy.
+		Set set1 = new Set();
+		Set set2 = new Set();
+
+		do {
+			set1 = processInput("Give first set : ");
+			set2 = processInput("Give second set : ");		
+		} while (performOperations(set1, set2));
 	}
 	
 	Set processInput(String prompt) {
@@ -87,7 +85,6 @@ public class Main {
 		return curSet;
 	}
 	
-	
 	Identifier makeIdentifier(Scanner element) {
 		if (!nextCharIsLetter(element)) {
 			out.printf("Identifiers have to start with a letter.\n");
@@ -106,7 +103,7 @@ public class Main {
 		return id; 
 	}
 	
-	void performOperations(Set set1, Set set2) {
+	boolean performOperations(Set set1, Set set2) {
 		Set difference = set1.difference(set2);
 		Set intersection = set1.intersection(set2);
 		Set union = set1.union(set2);
@@ -116,6 +113,7 @@ public class Main {
 		out.printf("intersection = %s\n", stringifySet(intersection));
 		out.printf("union = %s\n", stringifySet(union));
 		out.printf("symm. diff. = %s\n\n", stringifySet(symdif));
+		return true;
 	}
 	
 	String stringifySet(Set set) {
