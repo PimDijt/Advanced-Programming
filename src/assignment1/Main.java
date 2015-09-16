@@ -42,7 +42,7 @@ public class Main {
 			return false;
 		}
 		char first = line.charAt(0);
-		char last = line.charAt(line.length() - 1);
+		char last  = line.charAt(line.length() - 1);
 		if (first != '{') {
 			out.printf("The set has to start with a '{'.\n");
 			return false;
@@ -95,14 +95,15 @@ public class Main {
 	}
 	
 	void performOperations(Set set1, Set set2) {
-		Set difference = set1.difference(set2);
-		Set intersection = set1.intersection(set2);
-		Set union = set1.union(set2);
-		Set symdif = set1.symmetricDifference(set2);
-		out.printf("difference = %s\n", stringifySet(difference));
-		out.printf("intersection = %s\n", stringifySet(intersection));
-		out.printf("union = %s\n", stringifySet(union));
-		out.printf("symm. diff. = %s\n\n", stringifySet(symdif));
+		Set difference 		= 	set1.difference(set2);
+		Set intersection	= 	set1.intersection(set2);
+		Set union 			= 	set1.union(set2);
+		Set symdif 			= 	set1.symmetricDifference(set2);
+		
+		out.printf("difference = %s\n", 	stringifySet(difference));
+		out.printf("intersection = %s\n", 	stringifySet(intersection));
+		out.printf("union = %s\n", 			stringifySet(union));
+		out.printf("symm. diff. = %s\n\n", 	stringifySet(symdif));
 	}
 	
 	String stringifySet(Set set) {
