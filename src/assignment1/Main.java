@@ -5,8 +5,10 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class Main {
-
 	public static final int MAX_IDENTIFIERS_PER_SET = 10;
+	public static final String QUESTION_SET_1 = "Give first set : ";
+	public static final String QUESTION_SET_2 = "Give second set : ";
+	
 	PrintStream out;
 	
 	Main(){
@@ -15,8 +17,8 @@ public class Main {
 		
 	void start(){
 		while (true) {
-			Set set1 = processInput("Give first set : ");
-			Set set2 = processInput("Give second set : ");		
+			Set set1 = processInput(QUESTION_SET_1);
+			Set set2 = processInput(QUESTION_SET_2);		
 			performOperations(set1, set2);
 		}
  	}
@@ -97,7 +99,6 @@ public class Main {
 		Set intersection = set1.intersection(set2);
 		Set union = set1.union(set2);
 		Set symdif = set1.symmetricDifference(set2);
-		
 		out.printf("difference = %s\n", stringifySet(difference));
 		out.printf("intersection = %s\n", stringifySet(intersection));
 		out.printf("union = %s\n", stringifySet(union));
