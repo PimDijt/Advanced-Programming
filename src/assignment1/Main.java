@@ -16,17 +16,18 @@ public class Main {
 	}
 		
 	void start(){
-		while (true) {
+		do {
 			Set set1 = processInput(QUESTION_SET_1);
 			Set set2 = processInput(QUESTION_SET_2);		
 			performOperations(set1, set2);
-		}
+		} while (true);
  	}
 	
 	Set processInput(String prompt) {
 		Scanner in = new Scanner(System.in);
 		while (true) {
 			out.printf("%s", prompt);
+			if (!in.hasNextLine()){ System.exit(0); }
 			String line = in.nextLine();
 			if (checkSyntax(line)) {
 				Set curSet = parseIdentifiers(line);
@@ -110,6 +111,7 @@ public class Main {
 		Set result = new Set(set);
 		String line = "{";
 		int setSize = result.getSize();
+		line += (setSize == 0) ? "}" : "";
 		for (int i = 0; i < setSize; i++) {
 			Identifier id = result.getIdentifier();
 			result.removeIdentifier(id);
