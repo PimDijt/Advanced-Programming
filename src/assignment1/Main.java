@@ -10,9 +10,11 @@ public class Main {
 	public static final String QUESTION_SET_2 = "Give second set : ";
 	
 	PrintStream out;
+	Scanner in;
 	
 	Main(){
 		out = new PrintStream(System.out);
+		in = new Scanner(System.in);
 	}
 		
 	void start(){
@@ -24,7 +26,6 @@ public class Main {
  	}
 	
 	Set processInput(String prompt) {
-		Scanner in = new Scanner(System.in);
 		while (true) {
 			out.printf("%s", prompt);
 			if (!in.hasNextLine()){ System.exit(0); }
