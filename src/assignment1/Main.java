@@ -64,7 +64,7 @@ public class Main {
 			element.useDelimiter("");
 			Identifier id = makeIdentifier(element);
 			if (id == null) { return null; }
-			if (curSet.getSize() >= MAX_IDENTIFIERS_PER_SET) {
+			if (curSet.getSize() >= MAX_IDENTIFIERS_PER_SET && !curSet.contains(id)) {
 				out.printf("A set cannot contain more than 10 elements.\n");
 				return null;
 			}
