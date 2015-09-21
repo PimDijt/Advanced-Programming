@@ -46,4 +46,16 @@ public class Identifier implements IdentifierInterface {
 		}
 		return true;
 	}
+
+	@Override
+	public IdentifierInterface clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int compareTo(IdentifierInterface o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

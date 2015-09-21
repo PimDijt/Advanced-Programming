@@ -126,4 +126,16 @@ public class Set implements SetInterface {
 		Set result = union.difference(intersection);
 		return result;
 	}
+
+	@Override
+	public Set clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int compareTo(SetInterface o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

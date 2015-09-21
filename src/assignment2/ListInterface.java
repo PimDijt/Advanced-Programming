@@ -107,6 +107,4 @@ public interface ListInterface<E extends Data<E>> extends Clonable<ListInterface
 	 *	@postcondition - A deep-copy of list has been returned.
 	 **/
 	public ListInterface<E> clone();
-
-
 }

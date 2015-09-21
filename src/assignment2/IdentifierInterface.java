@@ -16,18 +16,11 @@ package assignment2;
  *              <dt><b>POST-condition</b>
  *              <dd>A new Identifier object is created which contains one character
  *              </dl>
- *              <br>
- *              Identifier (Identifier src);
- *              <dl>
- *              <dt><b>PRE-condition</b>
- *              <dd>-
- *              <dt><b>POST-condition</b>
- *              <dd>The new Identifier object contains a copy of src
- *              </dl>
  **/
 
-public interface IdentifierInterface {
-
+public interface IdentifierInterface extends Data<IdentifierInterface>{
+	
+	
 	/**
 	 * Initializes the Identifier object 
 	 * 

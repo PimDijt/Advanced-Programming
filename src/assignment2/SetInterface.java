@@ -8,25 +8,16 @@ package assignment2;
  * @elements elements of type Identifier
  * @structure none
  * @domain A collection of between 0 and 20 Identifiers 
- * @constructor Collection();
+ * @constructor Set();
  *              <dl>
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>The new Collection object contains 0 Identifier objects
+ *              <dd>The new Set object contains 0 Identifier objects
  *              </dl>
- *              <br>
- *              Collection (Collection src);
- *              <dl>
- *              <dt><b>PRE-condition</b>
- *              <dd>-
- *              <dt><b>POST-condition</b>
- *              <dd>The new Collection object is a copy of src
- *              </dl>
- *
  **/
 
-public interface SetInterface {
+public interface SetInterface extends Data<SetInterface>{
 	
 	static final int MAX_ELEMENTS = 20; 
 	
@@ -97,7 +88,7 @@ public interface SetInterface {
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
 	 * 					failure: An exception is thrown
 	 */
-	Set union(Set col) throws Exception;
+	Set union(Set col);
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -116,5 +107,5 @@ public interface SetInterface {
 	 *                 set is returned
 	 *                 failure: An exception is thrown
 	 */
-	Set symmetricDifference(Set col) throws Exception; //Explain why Exception is thrown
+	Set symmetricDifference(Set col);
 }

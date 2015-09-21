@@ -2,7 +2,7 @@ package assignment2;
 
 // Inner class for the implementation of the List class.
 
-private class Node {
+class Node<E extends Data> {
 
     E data;
     Node prior,
