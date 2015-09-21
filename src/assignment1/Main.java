@@ -72,7 +72,7 @@ public class Main {
 			try {
 				curSet.addIdentifier(id);
 			} catch (Exception e) {
-				out.println("Too many identifiers.\n");
+				out.println("The set contains too many elements");
 			}
 		}
 		return curSet;

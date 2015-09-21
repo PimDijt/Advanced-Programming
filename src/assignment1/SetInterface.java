@@ -59,6 +59,8 @@ public interface SetInterface {
 	/**
 	 * Adds an Identifier to the set
 	 * 
+	 * Exception is thrown when the result exceeds 20 elements.
+	 * 
 	 * @precondition: -
 	 * @postcondition: succes: The Identifier is added to the set
 	 * 				   failure: An exception is thrown
@@ -91,13 +93,11 @@ public interface SetInterface {
 	/**
 	 * Returns a set of the union between col and this set
 	 * 
-	 * Exception is thrown when union result exceeds 20 elements.
-	 * 
 	 * @precondition: - Set should not be empty 
-	 * @postcondition: 	succes: A set of the union between col and this set is returned
-	 * 					failure: An exception is thrown
+	 * @postcondition: 	A set of the union between col and this set is returned
+	 * 
 	 */
-	Set union(Set col) throws Exception;
+	Set union(Set col);
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -112,9 +112,8 @@ public interface SetInterface {
 	 * Returns a set of the symmetric difference between col and this set
 	 * 
 	 * @precondition: -
-	 * @postcondition: succes: A set of the symmetric difference between col and this
+	 * @postcondition: A set of the symmetric difference between col and this
 	 *                 set is returned
-	 *                 failure: An exception is thrown
 	 */
-	Set symmetricDifference(Set col) throws Exception; //Explain why Exception is thrown
+	Set symmetricDifference(Set col);
 }
