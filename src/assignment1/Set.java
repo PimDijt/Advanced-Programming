@@ -61,7 +61,7 @@ public class Set implements SetInterface {
 				}
 			}
 		
-		for (int i = toRemove; i < size; i++){
+		for (int i = toRemove; i < (size-1); i++){
 			elements[i] = elements[i+1];
 		}
 		size--;
@@ -91,8 +91,7 @@ public class Set implements SetInterface {
 				try {
 					result.addIdentifier(tmp);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("The union consists of more than " + MAX_ELEMENTS + " elements");
 				}
 			}
 			foreignSet.removeIdentifier(tmp);
@@ -111,7 +110,7 @@ public class Set implements SetInterface {
 				try {
 					result.addIdentifier(tmp);
 				} catch (Exception e) {
-					e.printStackTrace(System.out);
+					System.out.println("The union consists of more than " + MAX_ELEMENTS + " elements");
 				}
 			}
 		}
