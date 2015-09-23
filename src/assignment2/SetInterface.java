@@ -17,7 +17,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface SetInterface<E extends Data> extends Clonable{
+public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
 	
 	static final int MAX_ELEMENTS = 20; 
 	
@@ -44,8 +44,15 @@ public interface SetInterface<E extends Data> extends Clonable{
 	 * @postcondition: 	true: data object is present in set
 	 * 					false: data object is not present in set
 	 */
-	
 	boolean contains(E id);
+	
+	/**
+	 * Checks wheter the set is empty
+	 * @precondition: -
+	 * @postcondition:  true: the set is empty
+	 * 					false: the set is not empty
+	 */
+	boolean isEmpty();
 
 	/**
 	 * Adds a Data object to the set

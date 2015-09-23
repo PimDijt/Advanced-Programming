@@ -9,19 +9,19 @@ public class Number implements NumberInterface{
 	}
 
 	@Override
-	public int compareTo(NumberInterface arg0) {
+	public int compareTo(NumberInterface o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Number init(char c) {
+	public NumberInterface init(char c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Number addDigit(char c) {
+	public NumberInterface addDigit(char c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -43,5 +43,6 @@ public class Number implements NumberInterface{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }
