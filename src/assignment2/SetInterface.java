@@ -1,23 +1,23 @@
 package assignment2;
 
 /**
- * ADT for the class Collection.
+ * ADT for the class Set.
  *
  * @author Pim Dijt, Rick van Rheenen
  * 
- * @elements elements of type Identifier
+ * @elements elements of type Data
  * @structure none
- * @domain A collection of between 0 and 20 Identifiers 
+ * @domain A set of between 0 and 20 Data objects
  * @constructor Set();
  *              <dl>
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>The new Set object contains 0 Identifier objects
+ *              <dd>The new Set object contains 0 Data objects
  *              </dl>
  **/
 
-public interface SetInterface extends Data<SetInterface>{
+public interface SetInterface<E extends Data> extends Clonable{
 	
 	static final int MAX_ELEMENTS = 20; 
 	
@@ -25,50 +25,51 @@ public interface SetInterface extends Data<SetInterface>{
 	 * Initializes an empty set
 	 * 
 	 * @precondition: -
-	 * @postcondition: The set is initialized as an empty collection
+	 * @postcondition: The set is initialized as an empty set
 	 */
-	void init();
+	SetInterface<E> init();
 			
 	/**
 	 * Return the size of the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: The amount of Identifiers in the set is returned
+	 * @postcondition: The amount of Data objects in the set is returned
 	 */
 	int getSize();
 
 	/**
-	 * Checks whether given identifier is in the set
+	 * Checks whether given data object is in the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: 	true: identifier is present in set
-	 * 					false: identifier is not present in set
+	 * @postcondition: 	true: data object is present in set
+	 * 					false: data object is not present in set
 	 */
 	
-	boolean contains(Identifier id);
+	boolean contains(E id);
 
 	/**
-	 * Adds an Identifier to the set
+	 * Adds a Data object to the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: succes: The Identifier is added to the set
+	 * @postcondition: succes: The data objects is added to the set
 	 * 				   failure: An exception is thrown
+	 * @exception: The set contains more than the maximum allowed elements
 	 */	
-	void addIdentifier(Identifier id) throws Exception;
+	SetInterface<E> addElement(E id) throws Exception;
 
 	/**
-	 * removes Identifier id from the collection
+	 * removes data object id from the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: Identifier id is no longer in the collection
+	 * @postcondition: data object id is no longer in the set
 	 */
-	void removeIdentifier(Identifier id);
+	SetInterface<E> removeElement(E id);
 
 	/**
 	 * @precondition: The set contains 1 or more elements
-	 * @postcondition: A random Identifier from the collection is returned
+	 * @postcondition: A random Data object from the collection is returned
 	 */
-	Identifier getIdentifier();
+	E getElement();
 
 	/**
 	 * Returns a set of the difference between col and this set
@@ -87,8 +88,9 @@ public interface SetInterface extends Data<SetInterface>{
 	 * @precondition: - Set should not be empty 
 	 * @postcondition: 	succes: A set of the union between col and this set is returned
 	 * 					failure: An exception is thrown
+	 * @exception: The union of the two sets contains more than the maximum allowed elements
 	 */
-	Set union(Set col);
+	Set union(Set col) throws Exception;
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -106,6 +108,7 @@ public interface SetInterface extends Data<SetInterface>{
 	 * @postcondition: succes: A set of the symmetric difference between col and this
 	 *                 set is returned
 	 *                 failure: An exception is thrown
+	 * @exception: The symmetric difference of the two sets contains more than the maximum allowed elements
 	 */
-	Set symmetricDifference(Set col);
+	Set symmetricDifference(Set col) throws Exception;
 }

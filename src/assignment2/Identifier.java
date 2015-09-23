@@ -16,13 +16,15 @@ public class Identifier implements IdentifierInterface {
 		}
 	}
 
-	public void init(char c) {
+	public Identifier init(char c) {
 		id.setLength(0);
 		id.append(c);
+		return null;
 	}
 
-	public void addChar(char c) {
+	public Identifier addChar(char c) {
 		id.append(c);
+		return null;
 	}
 
 	public char getChar(int index) {
@@ -48,9 +50,14 @@ public class Identifier implements IdentifierInterface {
 	}
 
 	@Override
-	public IdentifierInterface clone() {
+	public Identifier clone() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int compareTo(Identifier o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override

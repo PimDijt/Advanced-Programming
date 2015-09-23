@@ -27,7 +27,7 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	 * @precondition: c is a char from a-z, A-Z
 	 * @postcondition: The Identifier object is initialized with character c
 	 */
-	void init(char c);
+	IdentifierInterface init(char c);
 
 
 	/**
@@ -36,7 +36,7 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	 * @precondition: c is a char from a-z, A-Z, 0-9
 	 * @postcondition: Character c is added to the Identifier at the end
 	 */
-	void addChar(char c);
+	IdentifierInterface addChar(char c);
 
 
 	/**

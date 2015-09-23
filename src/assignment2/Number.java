@@ -15,15 +15,15 @@ public class Number implements NumberInterface{
 	}
 
 	@Override
-	public void init(char c) {
+	public Number init(char c) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void addDigit(char c) {
+	public Number addDigit(char c) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

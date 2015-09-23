@@ -7,13 +7,13 @@ package assignment2;
  * 
  * @elements A natural number
  * @structure lineair
- * @domain A collection of between 0 and 20 Identifiers 
- * @constructor Collection();
+ * @domain -
+ * @constructor Number();
  *              <dl>
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>The new Number object 
+ *              <dd>A new Number object is returned which only contains the character '0'
  *              </dl>
   **/
 
@@ -25,15 +25,15 @@ public interface NumberInterface extends Data<NumberInterface>{
 	 * @precondition: c is a char from 0-9
 	 * @postcondition: The Number object is initialized with character c
 	 */
-	void init(char c);
+	NumberInterface init(char c);
 	
 	/**
 	 * Adds character c to the Number
 	 * 
-	 * @precondition: c is a char from 0-9
-	 * @postcondition: Character c is added to the Number at the end
+	 * @precondition: c is a character from 0-9
+	 * @postcondition: Character c is added to the Number at the end. (if the Number only consists of a 0 then the 0 is replaced by char).
 	 */
-	void addDigit(char c);
+	NumberInterface addDigit(char c);
 	
 	/**
 	 * Returns a char at position index from the Number
