@@ -17,7 +17,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
+public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E>>{
 	
 	static final int MAX_ELEMENTS = 20; 
 	
@@ -27,7 +27,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
 	 * @precondition: -
 	 * @postcondition: The set is initialized as an empty set
 	 */
-	SetInterface<E> init();
+	Set<E> init();
 			
 	/**
 	 * Return the size of the set
@@ -85,7 +85,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
 	 * @postcondition: A set of the difference between col and this set is
 	 *                 returned
 	 */
-	Set difference(Set col);
+	Set<E> difference(Set<E> col);
 
 	/**
 	 * Returns a set of the union between col and this set
@@ -97,7 +97,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
 	 * 					failure: An exception is thrown
 	 * @exception: The union of the two sets contains more than the maximum allowed elements
 	 */
-	Set union(Set col) throws Exception;
+	Set<E> union(Set<E> col) throws Exception;
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -106,7 +106,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
 	 * @postcondition: A set of the intersection of col and this set is
 	 *                 returned
 	 */
-	Set intersection(Set col);
+	Set<E> intersection(Set<E> col);
 
 	/**
 	 * Returns a set of the symmetric difference between col and this set
@@ -117,5 +117,5 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface>{
 	 *                 failure: An exception is thrown
 	 * @exception: The symmetric difference of the two sets contains more than the maximum allowed elements
 	 */
-	Set symmetricDifference(Set col) throws Exception;
+	Set<E> symmetricDifference(Set<E> col) throws Exception;
 }

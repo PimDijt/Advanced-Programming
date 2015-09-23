@@ -3,13 +3,13 @@ package assignment2;
 public class Set<E extends Data<E>> implements SetInterface<E> {
 
 	@Override
-	public SetInterface clone() {
+	public SetInterface<E> clone() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public SetInterface<E> init() {
+	public Set<E> init() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -51,25 +51,25 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 	}
 
 	@Override
-	public Set difference(Set col) {
+	public Set<E> difference(Set<E> col) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Set union(Set col) throws Exception {
+	public Set<E> union(Set<E> col) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Set intersection(Set col) {
+	public Set<E> intersection(Set<E> col) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Set symmetricDifference(Set col) throws Exception {
+	public Set<E> symmetricDifference(Set<E> col) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
