@@ -5,7 +5,7 @@ package assignment2;
  *
  * @author Pim Dijt, Rick van Rheenen
  * 
- * @elements: keys and values ///Turn this into table entries
+ * @elements: Table entries consisting of a key and a value
  * @structure: lineair
  * @domain: A table with unique keys and their corresponding values
  * @constructor: Table();
@@ -40,7 +40,7 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	 * returns the size of the table
 	 * 
 	 * @precondition: -
-	 * @postcondition: The amount of keys in the table is returned
+	 * @postcondition: The amount of entries in the table is returned
 	 */
 	int size();
 	
@@ -48,7 +48,7 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	 * Adds a new key with a corresponding value
 	 * 
 	 * @precondition: -
-	 * @postcondition: The key and his corresponding value is added to the end of the table. 
+	 * @postcondition: The key and its corresponding value is added to the end of the table. 
 	 * 					If the key was already in the table, only the value is updated.	
 	 */
 	TableInterface<K,V> addKeyValue(K k, V v);
