@@ -25,8 +25,9 @@ public interface ListInterface<E extends Data<E>> extends Clonable<ListInterface
 	 **/
 	boolean isEmpty();
 
-	/** @precondition  -
-	 *	@postcondition - list-POST is empty and has been returned.
+	/**
+	 * @precondition -
+	 * @postcondition - list-POST is empty and has been returned.
 	 **/
 	ListInterface<E> init();
 
@@ -44,8 +45,9 @@ public interface ListInterface<E extends Data<E>> extends Clonable<ListInterface
 	ListInterface<E> insert(E d);
 
 
-	/** @precondition  - The list is not empty.
-	 *	@postcondition - A copy of the value of the current element has been returned.
+	/** 
+	 * @precondition  - The list is not empty.
+	 * @postcondition - A copy of the value of the current element has been returned.
 	 */
 	E retrieve();
 
@@ -93,7 +95,7 @@ public interface ListInterface<E extends Data<E>> extends Clonable<ListInterface
 
 	/**	
 	 * @precondition - 
-	 *@postcondition - FALSE: list is empty
+	 * @postcondition - FALSE: list is empty
 	 *     			   TRUE:  current points to the last element
 	 */
 	boolean goToLast();
