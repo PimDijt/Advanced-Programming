@@ -9,12 +9,12 @@ package assignment2;
  * @structure: lineair
  * @domain: A table with unique keys and their corresponding values
  * @constructor: Table();
- *              <dl>
- *              <dt><b>PRE-condition</b>
- *              <dd>-
- *              <dt><b>POST-condition</b>
- *              <dd>An empty table object is returned
- *              </dl>
+ *               <dl>
+ *               <dt><b>PRE-condition</b>
+ *               <dd>-
+ *               <dt><b>POST-condition</b>
+ *               <dd>An empty table object is returned
+ *               </dl>
  **/
 
 public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extends Clonable<TableInterface<K, V>> {
@@ -31,10 +31,19 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	 * Checks if the table is empty
 	 * 
 	 * @precondition: -
-	 * @postcondition: 	true: The table contains 0 keys
-	 * 					false: The table contains more than 0 keys
+	 * @postcondition: 	True:  The table contains 0 entries
+	 * 					False: The table contains more than 0 entries
 	 */
 	boolean isEmpty();
+	
+	/**
+	 * Checks whether given entry is in the table
+	 * 
+	 * @precondition: -
+	 * @postcondition: 	True:  Entry is present in table
+	 * 					False: Entry is not present in table
+	 */
+	boolean contains(K k);
 	
 	/**
 	 * returns the size of the table
@@ -49,14 +58,14 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	 * 
 	 * @precondition: -
 	 * @postcondition: The key and its corresponding value is added to the end of the table. 
-	 * 					If the key was already in the table, only the value is updated.	
+	 * 				   If the key was already in the table, only the value is updated.	
 	 */
 	TableInterface<K,V> addKeyValue(K k, V v);
 	
 	/**
-	 *returns the value which is linked to the given key
+	 * Returns the value which is linked to the given key
 	 *
-	 * @precondition: The key is in the table
+	 * @precondition:  The key is in the table
 	 * @postcondition: The corresponding value of the key is returned
 	 */
 	V getValue(K k);	
