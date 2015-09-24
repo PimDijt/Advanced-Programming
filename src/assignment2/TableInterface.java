@@ -5,7 +5,7 @@ package assignment2;
  *
  * @author Pim Dijt, Rick van Rheenen
  * 
- * @elements: keys and values
+ * @elements: keys and values ///Turn this into table entries
  * @structure: lineair
  * @domain: A table with unique keys and their corresponding values
  * @constructor: Table();
