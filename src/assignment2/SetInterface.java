@@ -7,7 +7,7 @@ package assignment2;
  * 
  * @elements elements of type Data
  * @structure none
- * @domain A set of between 0 and 20 Data objects
+ * @domain A set Data objects
  * @constructor Set();
  *              <dl>
  *              <dt><b>PRE-condition</b>
@@ -18,9 +18,7 @@ package assignment2;
  **/
 
 public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E>>{
-	
-	static final int MAX_ELEMENTS = 20; 
-	
+		
 	/**
 	 * Initializes an empty set
 	 * 
@@ -41,16 +39,16 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Checks whether given data object is in the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: 	true: data object is present in set
-	 * 					false: data object is not present in set
+	 * @postcondition: 	True: data object is present in set
+	 * 					False: data object is not present in set
 	 */
 	boolean contains(E id);
 	
 	/**
 	 * Checks wheter the set is empty
 	 * @precondition: -
-	 * @postcondition:  true: the set is empty
-	 * 					false: the set is not empty
+	 * @postcondition:  True: the set is empty
+	 * 					False: the set is not empty
 	 */
 	boolean isEmpty();
 
@@ -58,17 +56,17 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Adds a Data object to the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: succes: The data objects is added to the set
-	 * 				   failure: An exception is thrown
-	 * @exception: The set contains more than the maximum allowed elements
+	 * @postcondition: Succes: The data objects is added to the set
+	 * 				   Failure: An exception is thrown
+	 * @throws: 	   The set contains more than the maximum allowed elements
 	 */	
 	SetInterface<E> addElement(E id) throws Exception;
 
 	/**
-	 * removes data object id from the set
+	 * Removes data object id from the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: data object id is no longer in the set
+	 * @postcondition: Data object id is no longer in the set
 	 */
 	SetInterface<E> removeElement(E id);
 
@@ -93,9 +91,10 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Exception is thrown when union result exceeds 20 elements.
 	 * 
 	 * @precondition: - Set should not be empty 
-	 * @postcondition: 	succes: A set of the union between col and this set is returned
-	 * 					failure: An exception is thrown
-	 * @exception: The union of the two sets contains more than the maximum allowed elements
+	 * @postcondition: 	Succes: A set of the union between col and this set is returned
+	 * 					Failure: Throws exception  
+	 * @throws 			The union of the two sets contains more than the maximum allowed elements
+	 * 
 	 */
 	Set<E> union(Set<E> col) throws Exception;
 
@@ -112,10 +111,10 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Returns a set of the symmetric difference between col and this set
 	 * 
 	 * @precondition: -
-	 * @postcondition: succes: A set of the symmetric difference between col and this
+	 * @postcondition: Succes: A set of the symmetric difference between col and this
 	 *                 set is returned
-	 *                 failure: An exception is thrown
-	 * @exception: The symmetric difference of the two sets contains more than the maximum allowed elements
+	 *                 Failure: Throws exception
+	 * @throws: 	   The symmetric difference of the two sets contains more than the maximum allowed elements
 	 */
 	Set<E> symmetricDifference(Set<E> col) throws Exception;
 }
