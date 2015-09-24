@@ -25,7 +25,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * @precondition: -
 	 * @postcondition: The set is initialized as an empty set
 	 */
-	Set<E> init();
+	SetInterface<E> init();
 			
 	/**
 	 * Return the size of the set
@@ -39,16 +39,16 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Checks whether given data object is in the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: 	True: data object is present in set
-	 * 					False: data object is not present in set
+	 * @postcondition: 	True:  Data object is present in set
+	 * 					False: Data object is not present in set
 	 */
 	boolean contains(E id);
 	
 	/**
 	 * Checks wheter the set is empty
 	 * @precondition: -
-	 * @postcondition:  True: the set is empty
-	 * 					False: the set is not empty
+	 * @postcondition:  True:  The set is empty
+	 * 					False: The set is not empty
 	 */
 	boolean isEmpty();
 
@@ -56,7 +56,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Adds a Data object to the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: Succes: The data objects is added to the set
+	 * @postcondition: Succes:  The data objects is added to the set
 	 * 				   Failure: An exception is thrown
 	 * @throws: 	   The set contains more than the maximum allowed elements
 	 */	
@@ -71,7 +71,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	SetInterface<E> removeElement(E id);
 
 	/**
-	 * @precondition: The set contains 1 or more elements
+	 * @precondition:  The set contains 1 or more elements
 	 * @postcondition: A random Data object from the collection is returned
 	 */
 	E getElement();
@@ -91,7 +91,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * Exception is thrown when union result exceeds 20 elements.
 	 * 
 	 * @precondition: - Set should not be empty 
-	 * @postcondition: 	Succes: A set of the union between col and this set is returned
+	 * @postcondition: 	Succes:  A set of the union between col and this set is returned
 	 * 					Failure: Throws exception  
 	 * @throws 			The union of the two sets contains more than the maximum allowed elements
 	 * 
