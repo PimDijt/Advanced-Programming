@@ -39,7 +39,7 @@ public class Identifier implements IdentifierInterface {
 	}
 
 	@Override
-	public boolean isEqualTo(Identifier id) {
+	public boolean isEqualTo(IdentifierInterface id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
