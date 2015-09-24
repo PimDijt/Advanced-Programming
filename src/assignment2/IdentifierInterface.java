@@ -14,7 +14,8 @@ package assignment2;
  *              <dt><b>PRE-condition</b>
  *              <dd>-
  *              <dt><b>POST-condition</b>
- *              <dd>A new Identifier object is created which contains one character
+ *              <dd>A new Identifier object is created which contains one
+ *              character
  *              </dl>
  **/
 
@@ -24,7 +25,7 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	/**
 	 * Initializes the Identifier object 
 	 * 
-	 * @precondition: c is a char from a-z, A-Z
+	 * @precondition:  c is a char from a-z, A-Z
 	 * @postcondition: The Identifier object is initialized with character c
 	 */
 	IdentifierInterface init(char c);
@@ -33,7 +34,7 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	/**
 	 * Adds character c to the Identifier
 	 * 
-	 * @precondition: c is a char from a-z, A-Z, 0-9
+	 * @precondition:  c is a char from a-z, A-Z, 0-9
 	 * @postcondition: Character c is added to the Identifier at the end
 	 */
 	IdentifierInterface addChar(char c);
@@ -42,7 +43,7 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	/**
 	 * Returns a char at position index from the Identifier
 	 * 
-	 * @precondition: The index is less than the size of the Identifier and not negative
+	 * @precondition:  The index is less than the size of the Identifier and not negative
 	 * @postcondition: The character at position index is returned
 	 */
 	char getChar(int index);
@@ -57,12 +58,12 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	int getSize();
 
 	/**
-	 * Checks if the two Identifiers are equal to eachother
+	 * Checks if the two Identifiers are equal to each other
 	 * 
 	 * @precondition: -
-	 * @postcondition: false: The Identifiers are not equal 
-	 * 				   true: The  Identifiers are equal
+	 * @postcondition: False: The Identifiers are not equal 
+	 * 				   True:  The Identifiers are equal
 	 */
-	boolean isEqualTo(Identifier id);
+	boolean isEqualTo(IdentifierInterface id);
 
 }
