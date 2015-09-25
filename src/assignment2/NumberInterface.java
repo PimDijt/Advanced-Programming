@@ -21,7 +21,7 @@ package assignment2;
 public interface NumberInterface extends Data<NumberInterface>{
 	
 	/**
-	 * Initializes the Number object
+	 * Initializes the Number object 
 	 * 
 	 * @precondition:  c is a char from 0-9
 	 * @postcondition: The Number object is initialized with character c
