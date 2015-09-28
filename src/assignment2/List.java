@@ -2,77 +2,125 @@ package assignment2;
 
 public class List<E extends Data<E>> implements ListInterface<E>{
 
-	@Override
+	Node<E> first, current, last;
+	int size;
+	
+	public List(){
+		size = 0;
+	}
+	
+	public List<E> init() {
+		first = current = last = null;
+		size = 0;
+		
+		return this;
+	}
+	
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size() == 0;
 	}
 
-	@Override
-	public ListInterface<E> init() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
-	@Override
-	public ListInterface<E> insert(E d) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<E> insert(E d) {
+		if (isEmpty()){
+			first = current = last = new Node(d.clone());
+		} else if (current.data.compareTo(d) < 0){
+			first = new Node<E>(d, null, current); 
+		} else {
+			while (current.data.compareTo(d) > 0){
+				if (current.next == null){
+					last = new Node<E>(d, current, null);
+				}
+				current = current.next;
+			}
+			Node<E> tmp = new Node<E>(d, current.prior, current);
+			tmp.prior.next = tmp;
+			current.prior = tmp;
+		}
+		size++;
+		return this;
 	}
 
-	@Override
 	public E retrieve() {
-		// TODO Auto-generated method stub
-		return null;
+		return current.data;
 	}
 
-	@Override
-	public ListInterface<E> remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<E> remove() {
+		if (size == 1) {
+			this.init();
+			return this;
+		}
+		if (current == first) {
+			first = first.next;
+			first.prior = null;
+		} else if (current == last) {
+			last = last.prior;
+			last.next = null;
+		} else {
+			current.prior.next = current.next;
+			current.next.prior = current.prior;
+		}
+		size--;
+		return this;
 	}
 
-	@Override
 	public boolean find(E d) {
-		// TODO Auto-generated method stub
+		current = first;
+		while (current.next != null){
+			if (current.data.compareTo(d) == 0){
+				return true;
+			} else if (current.data.compareTo(d) < 0){
+				break;
+			}
+			current = current.next;
+		}
 		return false;
 	}
 
-	@Override
 	public boolean goToFirst() {
-		// TODO Auto-generated method stub
+		if (!isEmpty()){
+			current = first;
+			return true;
+		}
 		return false;
 	}
 
-	@Override
 	public boolean goToLast() {
-		// TODO Auto-generated method stub
+		if (!isEmpty()){
+			current = last;
+			return true;
+		}
 		return false;
 	}
 
-	@Override
 	public boolean goToNext() {
-		// TODO Auto-generated method stub
-		return false;
+		if(isEmpty() || current == last){
+			return false;
+		}
+		current = current.next;
+		return true;
 	}
 
-	@Override
 	public boolean goToPrevious() {
-		// TODO Auto-generated method stub
-		return false;
+		if(isEmpty() || current == first){
+			return false;
+		}
+		current = current.prior;
+		return true;
+		
 	}
 
-	@Override
-	public ListInterface<E> clone() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<E> clone() {
+		List<E> clone = new List<E>();
+		
+		if(goToFirst()){
+			do {
+				clone.insert((E) current.data.clone());
+			} while(goToNext());
+		}
+		return clone;
 	}
-
-
 }

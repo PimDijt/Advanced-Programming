@@ -4,31 +4,35 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Main {
-
 	
+	Scanner in;
+
+	Main() {
+		in = new Scanner(System.in);
+	}
 	
 	void start(){
-		Scanner in = new Scanner(System.in);
-		String row = in.nextLine();
+		String 	row = in.nextLine();
 		Scanner rowScanner = new Scanner(row);
 		try {
 			program(rowScanner);
 		} catch (APException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	void program(Scanner input) throws APException{
-		statement(input);
-		eoln(input);
+		while(!eof(input)){
+			Scanner rowScanner = new Scanner(in.nextLine()).useDelimiter("");
+			statement(rowScanner);				
+		}
 	}
 	
 	void statement(Scanner input) throws APException{
 		if(nextCharIsLetter(input)){
 			assignment(input);
 		}else if(nextCharIs(input, '?')){
-			print(input);
+			printStatement(input);
 		}else if(nextCharIs(input, '/')){
 			comment(input);
 		}else{
@@ -39,17 +43,35 @@ public class Main {
 	void assignment(Scanner input) throws APException{
 		Identifier id = identifier(input);
 		character(input, '=');
+		Set set = expression(input);
+		eoln(input);
 	}
 	
+	void printStatement(Scanner input){
+		character(input, '?');
+		Set set = expression(input);
+		eoln(input);
+	}
+	
+	void comment(Scanner input) throws APException{
+		character(input, '/');
+		while(input.hasNext()){
+			nextChar(input);
+		}
+		eoln(input);
+	}
+	
+	
 	Identifier identifier(Scanner input){
-		Identifier id = new Identifier();
+		Identifier id = new Identifier().init(nextChar(input));
+		while(){
+			
+		}
 		return id;
 	}
-	void print(Scanner input){
-		
-	}
-	void comment(Scanner input){
-		
+
+	Set<E> expression(Scanner input){
+		return null;
 	}
 	
 	void character (Scanner input, char c) throws APException {
@@ -65,8 +87,15 @@ public class Main {
 	
 	void eoln (Scanner input) throws APException {
 	    if (input.hasNext()) {
-		throw new APException("........");
+	    	throw new APException("........");
 	    }
+	}
+	
+	boolean eof (Scanner input) throws APException {
+	    if (input.hasNext()) {
+	    	return true;
+	    }
+	    return false;
 	}
 	
 	boolean nextCharIs(Scanner in, char c) {

@@ -2,46 +2,55 @@ package assignment2;;
 
 public class Identifier implements IdentifierInterface {
 
-	@Override
-	public IdentifierInterface clone() {
-		// TODO Auto-generated method stub
-		return null;
+	private StringBuffer id;
+	
+	public Identifier() {
+		id = new StringBuffer();
+		id.append('a');
+	}
+	
+
+	public Identifier init(char c) {
+		id.setLength(0);
+		id.append(c);
+		return this;
 	}
 
-	@Override
-	public int compareTo(IdentifierInterface o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Identifier addChar(char c) {
+		id.append(c);
+		return this;
 	}
 
-	@Override
-	public IdentifierInterface init(char c) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IdentifierInterface addChar(char c) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public char getChar(int index) {
-		// TODO Auto-generated method stub
-		return 0;
+		return id.charAt(index);
 	}
 
-	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id.length();
+	}
+	
+	public boolean isEqualTo(Identifier id) {
+		if (this.getSize() != id.getSize()) {
+			return false;
+		} else {
+			for (int i = 0; i < this.getSize(); i++) {
+				if (this.getChar(i) != id.getChar(i)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
-	@Override
-	public boolean isEqualTo(IdentifierInterface id) {
-		// TODO Auto-generated method stub
-		return false;
+	public Identifier clone() {
+		Identifier identifier = new Identifier().init(this.getChar(0));
+		for (int i = 1; i < this.getSize(); i++) {
+			identifier.addChar(this.getChar(i));
+		}
+		return identifier;
 	}
-
+	
+	public int compareTo(Identifier identifier) {
+		return id.toString().compareTo(identifier.toString());
+	}
 }

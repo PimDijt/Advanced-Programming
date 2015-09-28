@@ -64,6 +64,6 @@ public interface IdentifierInterface extends Data<IdentifierInterface>{
 	 * @postcondition: False: The Identifiers are not equal 
 	 * 				   True:  The Identifiers are equal
 	 */
-	boolean isEqualTo(IdentifierInterface id);
+	boolean isEqualTo(Identifier id);
 
 }
