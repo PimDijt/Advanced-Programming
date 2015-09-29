@@ -11,21 +11,22 @@ public class Main {
 		in = new Scanner(System.in);
 	}
 	
-	void start(){
-		String 	row = in.nextLine();
-		Scanner rowScanner = new Scanner(row);
-		try {
-			program(rowScanner);
-		} catch (APException e) {
-			e.printStackTrace();
+	void start() {
+		
+		while (in.hasNextLine()) {
+			String row = in.nextLine();
+			Scanner rowScanner = new Scanner(row);
+			rowScanner.useDelimiter("");
+			try {
+				program(rowScanner);
+			} catch (APException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	void program(Scanner input) throws APException{
-		while(!eof(input)){
-			Scanner rowScanner = new Scanner(in.nextLine()).useDelimiter("");
-			statement(rowScanner);				
-		}
+	void program(Scanner input) throws APException {
+		statement(input);
 	}
 	
 	void statement(Scanner input) throws APException{
@@ -43,11 +44,11 @@ public class Main {
 	void assignment(Scanner input) throws APException{
 		Identifier id = identifier(input);
 		character(input, '=');
-		Set set = expression(input);
+		Set<Number> set = expression(input);
 		eoln(input);
 	}
 	
-	void printStatement(Scanner input){
+	void printStatement(Scanner input) throws APException{
 		character(input, '?');
 		Set set = expression(input);
 		eoln(input);
@@ -64,13 +65,11 @@ public class Main {
 	
 	Identifier identifier(Scanner input){
 		Identifier id = new Identifier().init(nextChar(input));
-		while(){
-			
-		}
+		
 		return id;
 	}
 
-	Set<E> expression(Scanner input){
+	Set expression(Scanner input){
 		return null;
 	}
 	

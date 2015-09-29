@@ -50,7 +50,7 @@ public class Identifier implements IdentifierInterface {
 		return identifier;
 	}
 	
-	public int compareTo(Identifier identifier) {
-		return id.toString().compareTo(identifier.toString());
+	public int compareTo(IdentifierInterface identifier) {
+		return this.toString().compareTo(identifier.toString());
 	}
 }

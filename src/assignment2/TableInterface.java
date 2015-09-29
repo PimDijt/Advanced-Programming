@@ -17,7 +17,7 @@ package assignment2;
  *               </dl>
  **/
 
-public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extends Clonable<TableInterface<K, V>> {
+public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extends Clonable<Table<K, V>> {
 
 	/**
 	 * Initializes a Table object

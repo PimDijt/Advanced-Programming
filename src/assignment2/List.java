@@ -25,20 +25,24 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 	}
 
 	public List<E> insert(E d) {
-		if (isEmpty()){
+		if (isEmpty()) {
 			first = current = last = new Node(d.clone());
-		} else if (current.data.compareTo(d) < 0){
-			first = new Node<E>(d, null, current); 
 		} else {
-			while (current.data.compareTo(d) > 0){
-				if (current.next == null){
-					last = new Node<E>(d, current, null);
+			goToFirst();
+			if (current.data.compareTo(d) < 0) {
+				first = new Node<E>(d.clone(), null, current);
+			} else {
+				while (current.data.compareTo(d) > 0) {
+					if (current.next == null) {
+						last = new Node<E>(d.clone(), current, null);
+					}
+					current = current.next;
 				}
-				current = current.next;
+				Node<E> tmp = new Node<E>(d.clone(), current.prior, current);
+				tmp.prior.next = tmp;
+				current.prior = tmp;
+				
 			}
-			Node<E> tmp = new Node<E>(d, current.prior, current);
-			tmp.prior.next = tmp;
-			current.prior = tmp;
 		}
 		size++;
 		return this;

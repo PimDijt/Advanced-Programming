@@ -5,11 +5,9 @@ import assignment1.Identifier;
 public class Set<E extends Data<E>> implements SetInterface<E> {
 
 	private List<E> set;
-	private int size;
 	
 	public Set() {
 		set = new List<E>();
-		size = 0;
 	}
 	
 	public Set<E> clone() {
@@ -24,31 +22,39 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 	}
 
 	public Set<E> init() {
-		return null;
+		set.init();
+		return this;
 	}
 
 	public int getSize() {
-		return 0;
+		return set.size();
 	}
 
 	public boolean contains(E id) {
+		if(set.find(id)){
+			return true;
+		}
 		return false;
 	}
 
 	public boolean isEmpty() {
-		return false;
+		return set.isEmpty();
 	}
 
-	public SetInterface<E> addElement(E id) throws Exception {
-		return null;
+	public Set<E> addElement(E id) throws Exception {
+		set.insert(id);
+		return this;
 	}
 
-	public SetInterface<E> removeElement(E id) {
-		return null;
+	public Set<E> removeElement(E id) {
+		set.find(id);
+		set.remove();
+		return this;
 	}
 
 	public E getElement() {
-		return null;
+		set.goToLast();
+		return set.retrieve();	
 	}
 
 	public Set<E> difference(Set<E> col) {

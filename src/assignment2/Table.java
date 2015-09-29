@@ -1,42 +1,51 @@
 package assignment2;
 
-public class Table<K extends Data<K>, V extends Clonable<V>> implements TableInterface{
+public class Table<K extends Data<K>, V extends Clonable<V>> implements TableInterface<K, V>{
 
-	@Override
-	public TableInterface init() {
-		// TODO Auto-generated method stub
-		return null;
+	List<KeyValuePair<K, V>> table;
+	
+	Table(){
+		table = new List<KeyValuePair<K, V>>();
+	}
+	
+	public Table<K,V> init() {
+		table.init();
+		return this;
 	}
 
-	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		return table.isEmpty();
+	}
+
+	public boolean contains(K k) {
+		KeyValuePair<K, V> key = new KeyValuePair<K, V>(k, null);
+		if(table.find(key)){
+			return true;
+		}
 		return false;
 	}
 
-	@Override
-	public boolean contains(Data k) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return table.size();
 	}
 
-	@Override
-	public TableInterface addKeyValue(Data k, Clonable v) {
-		// TODO Auto-generated method stub
-		return null;
+	public Table<K, V> addKeyValue(K k, V v) {
+		KeyValuePair<K, V> row = new KeyValuePair(k, v);
+		table.insert(row);
+		return this;
 	}
 
-	@Override
-	public Clonable getValue(Data k) {
-		// TODO Auto-generated method stub
-		return null;
+	public V getValue(K k) {
+		KeyValuePair<K, V> row = new KeyValuePair(k, null);
+		table.find(row);
+		return table.retrieve().value;
 	}
-
-
+	
+	public Table<K, V> clone(){
+		Table clone = new Table().init();
+		
+		//WORK TO BE DONE HERE
+		
+		return clone;
+	}
 }
