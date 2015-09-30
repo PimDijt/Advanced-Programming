@@ -41,7 +41,7 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 		return set.isEmpty();
 	}
 
-	public Set<E> addElement(E id) throws Exception {
+	public Set<E> addElement(E id) throws APException {
 		set.insert(id);
 		return this;
 	}
@@ -61,7 +61,7 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 		return null;
 	}
 
-	public Set<E> union(Set<E> col) throws Exception {
+	public Set<E> union(Set<E> col) throws APException {
 		return null;
 	}
 
@@ -69,7 +69,7 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 		return null;
 	}
 
-	public Set<E> symmetricDifference(Set<E> col) throws Exception {
+	public Set<E> symmetricDifference(Set<E> col) throws APException {
 		return null;
 	}
 }

@@ -37,7 +37,8 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 				while (current.data.compareTo(d) <= 0) {
 					if (current.next == null) {
 					last = new Node<E>(d.clone(), current, null);
-						current.next = last;
+						current.next= last;
+						current = last;
 						size++;
 						return this;
 					}

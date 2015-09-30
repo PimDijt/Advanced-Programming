@@ -60,7 +60,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * 				   Failure: An exception is thrown
 	 * @throws: 	   The set contains more than the maximum allowed elements
 	 */	
-	SetInterface<E> addElement(E id) throws Exception;
+	SetInterface<E> addElement(E id) throws APException;
 
 	/**
 	 * Removes data object id from the set
@@ -96,7 +96,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * @throws 			The union of the two sets contains more than the maximum allowed elements
 	 * 
 	 */
-	Set<E> union(Set<E> col) throws Exception;
+	Set<E> union(Set<E> col) throws APException;
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -116,5 +116,5 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 *                 Failure: Throws exception
 	 * @throws: 	   The symmetric difference of the two sets contains more than the maximum allowed elements
 	 */
-	Set<E> symmetricDifference(Set<E> col) throws Exception;
+	Set<E> symmetricDifference(Set<E> col) throws APException;
 }
