@@ -1,21 +1,21 @@
 package assignment2;
 
-public class List<E extends Data<E>> implements ListInterface<E>{
+public class List<E extends Data<E>> implements ListInterface<E> {
 
 	Node<E> first, current, last;
 	int size;
-	
-	public List(){
+
+	public List() {
 		size = 0;
 	}
-	
+
 	public List<E> init() {
 		first = current = last = null;
 		size = 0;
-		
+
 		return this;
 	}
-	
+
 	public boolean isEmpty() {
 		return size() == 0;
 	}
@@ -25,13 +25,13 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 	}
 
 	public List<E> insert(E d) {
-		if (isEmpty()){
+		if (isEmpty()) {
 			first = current = last = new Node(d.clone());
-		} else if (current.data.compareTo(d) < 0){
-			first = new Node<E>(d, null, current); 
+		} else if (current.data.compareTo(d) < 0) {
+			first = new Node<E>(d, null, current);
 		} else {
-			while (current.data.compareTo(d) > 0){
-				if (current.next == null){
+			while (current.data.compareTo(d) > 0) {
+				if (current.next == null) {
 					last = new Node<E>(d, current, null);
 				}
 				current = current.next;
@@ -69,10 +69,10 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 
 	public boolean find(E d) {
 		current = first;
-		while (current.next != null){
-			if (current.data.compareTo(d) == 0){
+		while (current.next != null) {
+			if (current.data.compareTo(d) == 0) {
 				return true;
-			} else if (current.data.compareTo(d) < 0){
+			} else if (current.data.compareTo(d) < 0) {
 				break;
 			}
 			current = current.next;
@@ -81,7 +81,7 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 	}
 
 	public boolean goToFirst() {
-		if (!isEmpty()){
+		if (!isEmpty()) {
 			current = first;
 			return true;
 		}
@@ -89,7 +89,7 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 	}
 
 	public boolean goToLast() {
-		if (!isEmpty()){
+		if (!isEmpty()) {
 			current = last;
 			return true;
 		}
@@ -97,7 +97,7 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 	}
 
 	public boolean goToNext() {
-		if(isEmpty() || current == last){
+		if (isEmpty() || current == last) {
 			return false;
 		}
 		current = current.next;
@@ -105,21 +105,21 @@ public class List<E extends Data<E>> implements ListInterface<E>{
 	}
 
 	public boolean goToPrevious() {
-		if(isEmpty() || current == first){
+		if (isEmpty() || current == first) {
 			return false;
 		}
 		current = current.prior;
 		return true;
-		
+
 	}
 
 	public List<E> clone() {
 		List<E> clone = new List<E>();
-		
-		if(goToFirst()){
+
+		if (goToFirst()) {
 			do {
 				clone.insert((E) current.data.clone());
-			} while(goToNext());
+			} while (goToNext());
 		}
 		return clone;
 	}
