@@ -64,8 +64,8 @@ public class Main {
 	
 	Identifier identifier(Scanner input){
 		Identifier id = new Identifier().init(nextChar(input));
-		while(){
-			
+		while(1==1){
+			//
 		}
 		return id;
 	}
