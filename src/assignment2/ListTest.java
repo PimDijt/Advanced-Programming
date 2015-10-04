@@ -179,6 +179,26 @@ public class ListTest {
     @Test
     public void testFind() {
 
+    	List<Letter> list = new List<>();
+    	
+        Letter a = new Letter('a');
+        Letter b = new Letter('b');
+        Letter c = new Letter('c');
+        Letter d = new Letter('d');
+        
+        list.insert(a);
+        list.insert(b);
+        list.insert(c);
+        list.insert(d);
+    	
+        assertTrue(list.find(a));
+    	list.goToFirst();
+    	list.remove();
+    	
+    	assertFalse(list.find(a));
+    	
+        
+        
         // TODO: You can add more of your own tests.
     }
 

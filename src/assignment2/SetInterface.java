@@ -17,7 +17,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E>>{
+public interface SetInterface<E extends Data<E>> extends Clonable<Set<E>>{
 		
 	/**
 	 * Initializes an empty set
@@ -96,7 +96,7 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 * @throws 			The union of the two sets contains more than the maximum allowed elements
 	 * 
 	 */
-	Set<E> union(Set<E> col) throws Exception;
+	Set<E> union(Set<E> col) throws APException;
 
 	/**
 	 * Returns a set of the intersection between col and this set
@@ -116,5 +116,5 @@ public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E
 	 *                 Failure: Throws exception
 	 * @throws: 	   The symmetric difference of the two sets contains more than the maximum allowed elements
 	 */
-	Set<E> symmetricDifference(Set<E> col) throws Exception;
+	Set<E> symmetricDifference(Set<E> col) throws APException;
 }

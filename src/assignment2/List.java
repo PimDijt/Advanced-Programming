@@ -81,11 +81,17 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 	}
 
 	public boolean find(E d) {
-		current = first;
+		if(isEmpty()){
+			return false;
+		}
+		goToFirst();
+		if(current.data.compareTo(d) == 0){
+			return true;
+		}
 		while (current.next != null) {
 			if (current.data.compareTo(d) == 0) {
 				return true;
-			} else if (current.data.compareTo(d) < 0) {
+			} else if (current.data.compareTo(d) > 0) {
 				break;
 			}
 			current = current.next;
