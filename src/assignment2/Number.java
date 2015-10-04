@@ -2,33 +2,61 @@ package assignment2;
 
 public class Number implements NumberInterface{
 
-	public NumberInterface clone() {
-		return null;
+	private StringBuffer num;
+	
+	Number(){
+		num = new StringBuffer();
+		num.append('0');
+	}
+	
+	
+	public Number clone() {
+		Number number = new Number();
+		number.init(this.getChar(0));
+		
+		for(int i = 1; i<this.size(); i++){
+			number.addDigit(this.getChar(i));
+		}
+		
+		return number;
+		
 	}
 
-	public int compareTo(NumberInterface o) {
-		return 0;
+	public int compareTo(Number number) {
+		return num.toString().compareTo(number.toString());
 	}
 
-	public NumberInterface init(char c) {
-		return null;
+
+	public Number init(char c) {
+		num.setLength(0);
+		num.append(c);
+		return this;
 	}
 
-	public NumberInterface addDigit(char c) {
-		return null;
+
+	public Number addDigit(char c) {
+		num.append(c);
+		return this;
 	}
 
 	public char getChar(int index) {
-		return 0;
+		return num.charAt(index);
 	}
 
-	public int size(Number n) {
-		return 0;
+	public int size() {
+		return num.length();
 	}
 
-	public boolean isEqualTo(Number n) {
-		return false;
+	public boolean isEqualTo(Number number) {
+		if (this.size() != number.size()) {
+			return false;
+		} else {
+			for (int i = 0; i < this.size(); i++) {
+				if (this.getChar(i) != number.getChar(i)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
-
-
 }

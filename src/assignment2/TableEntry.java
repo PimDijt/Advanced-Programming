@@ -10,16 +10,13 @@ public class TableEntry<K extends Data<K>, V extends Clonable<V>> implements Dat
 		this.value = v;
 	}
 
-	@Override
 	public TableEntry<K, V> clone() {
 		TableEntry<K, V> clone = new TableEntry<K, V>(this.key, this.value);
 		return clone;
 	}
 
-	@Override
-	public int compareTo(TableEntry o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(TableEntry<K,V> row) {
+		return row.toString().compareTo(this.key.toString());
 	}
 
 	

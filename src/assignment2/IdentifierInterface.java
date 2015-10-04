@@ -19,7 +19,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface IdentifierInterface extends Data<IdentifierInterface>{
+public interface IdentifierInterface extends Data<Identifier>{
 	
 	
 	/**

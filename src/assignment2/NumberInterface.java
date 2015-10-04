@@ -18,7 +18,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface NumberInterface extends Data<NumberInterface>{
+public interface NumberInterface extends Data<Number>{
 	
 	/**
 	 * Initializes the Number object 
@@ -50,7 +50,7 @@ public interface NumberInterface extends Data<NumberInterface>{
 	 * @precondition: -
 	 * @postcondition: The size of the Number is returned
 	 */
-	int size(Number n);
+	int size();
 	
 	/**
 	 * Checks if the two Numbers are equal to eachother
@@ -59,6 +59,6 @@ public interface NumberInterface extends Data<NumberInterface>{
 	 * @postcondition: False: The Numbers are not equal 
 	 * 				   True:  The  Numbers are equal
 	 */
-	boolean isEqualTo(NumberInterface n);
+	boolean isEqualTo(Number n);
 	
 }

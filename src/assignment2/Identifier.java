@@ -9,7 +9,6 @@ public class Identifier implements IdentifierInterface {
 		id.append('a');
 	}
 	
-
 	public Identifier init(char c) {
 		id.setLength(0);
 		id.append(c);

@@ -25,20 +25,30 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 	}
 
 	public List<E> insert(E d) {
-		if (isEmpty()) {
-			first = current = last = new Node(d.clone());
-		} else if (current.data.compareTo(d) < 0) {
-			first = new Node<E>(d, null, current);
+
+		if (!goToFirst()) {
+			first = current = last = new Node<E>(d.clone());
 		} else {
-			while (current.data.compareTo(d) > 0) {
-				if (current.next == null) {
-					last = new Node<E>(d, current, null);
+			goToFirst();
+			if (current.data.compareTo(d) > 0) {
+				first = new Node<E>(d, null, current);
+				current.prior = first;
+
+			} else {
+				while (current.data.compareTo(d) <= 0) {
+					if (current.next == null) {
+						last = new Node<E>(d, current, null);
+						current.next = last;
+						current = last;
+						size++;
+						return this;
+					}
+					current = current.next;
 				}
-				current = current.next;
+				Node<E> tmp = new Node<E>(d, current.prior, current);
+				tmp.prior.next = tmp;
+				current.prior = tmp;
 			}
-			Node<E> tmp = new Node<E>(d, current.prior, current);
-			tmp.prior.next = tmp;
-			current.prior = tmp;
 		}
 		size++;
 		return this;
@@ -56,12 +66,15 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 		if (current == first) {
 			first = first.next;
 			first.prior = null;
+			current = first;
 		} else if (current == last) {
 			last = last.prior;
 			last.next = null;
+			current = last;
 		} else {
 			current.prior.next = current.next;
 			current.next.prior = current.prior;
+			current = current.next;
 		}
 		size--;
 		return this;

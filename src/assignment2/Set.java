@@ -1,54 +1,54 @@
 package assignment2;
 
-import assignment1.Identifier;
 
 public class Set<E extends Data<E>> implements SetInterface<E> {
 
 	private List<E> set;
-	private int size;
 	
 	public Set() {
 		set = new List<E>();
-		size = 0;
 	}
 	
 	public Set<E> clone() {
-		Set cloneSet = new Set();
-
-//		for(int i=0; i<this.getSize(); i++){
-//			Identifier identifier = new Identifier(this.elements[i]);
-//			elements[i]=identifier;
-//			size++;
-//		}
-		return null;
+		Set<E> cloneSet = new Set<E>();
+		cloneSet.set = set.clone();
+		return cloneSet;
 	}
 
 	public Set<E> init() {
-		return null;
+		set.init();
+		return this;
 	}
 
 	public int getSize() {
-		return 0;
+		return set.size();
 	}
 
 	public boolean contains(E id) {
-		return false;
+		return set.find(id);
 	}
 
 	public boolean isEmpty() {
-		return false;
+		return set.isEmpty();
 	}
 
-	public SetInterface<E> addElement(E id) throws Exception {
-		return null;
+	public Set<E> addElement(E id) throws Exception {
+		if(set.find(id)){
+			set.remove();
+		}
+		set.insert(id);
+		return this;
 	}
 
-	public SetInterface<E> removeElement(E id) {
-		return null;
+	public Set<E> removeElement(E id) {
+		set.find(id);
+		set.remove();
+		return this;
 	}
 
 	public E getElement() {
-		return null;
+		set.goToLast();
+		return set.retrieve();
 	}
 
 	public Set<E> difference(Set<E> col) {
