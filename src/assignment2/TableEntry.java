@@ -2,8 +2,8 @@ package assignment2;
 
 public class TableEntry<K extends Data<K>, V extends Clonable<V>> implements Data<TableEntry<K ,V>>{
 
-	K key;
-	V value;
+	private K key;
+	private V value;
 	
 	TableEntry(K k, V v){
 		this.key = k;
@@ -15,8 +15,17 @@ public class TableEntry<K extends Data<K>, V extends Clonable<V>> implements Dat
 		return clone;
 	}
 
+	public K getKey(){
+		return this.key;
+	}
+	
+	public V getValue(){
+		return this.value;
+	}
+	
 	public int compareTo(TableEntry<K,V> row) {
-		return row.toString().compareTo(this.key.toString());
+		int test = key.compareTo(row.getKey());
+		return test;
 	}
 
 	

@@ -131,6 +131,9 @@ public class Main {
 		Set<Number> set = new Set<Number>();
 		if(nextCharIsLetter(input)){
 			Identifier id = identifier(input);
+			if(!table.contains(id)){
+				throw new APException("Identifier is not defined");
+			}
 			set = table.getValue(id);
 		} else if(nextCharIs(input, '(')){
 			set = complexFactor(input);
