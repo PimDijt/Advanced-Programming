@@ -23,7 +23,7 @@ public class Number implements NumberInterface{
 	}
 
 	public int compareTo(Number number) {
-		return num.toString().compareTo(number.toString());
+		return this.num.toString().compareTo(number.num.toString());
 	}
 
 

@@ -52,15 +52,46 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 	}
 
 	public Set<E> difference(Set<E> col) {
-		return null;
+		Set<E> difference = this.clone();
+		Set<E> newSet = col.clone();
+		while(!newSet.isEmpty()){
+			E id = newSet.getElement();
+			if(difference.contains(id)){
+				difference.removeElement(id);
+			}
+			newSet.removeElement(id);
+		}
+		return difference;
 	}
 
 	public Set<E> union(Set<E> col) throws APException {
-		return null;
+		Set<E> union = this.clone();
+		Set<E> newSet = col.clone();
+		while(!newSet.isEmpty()){
+			E id = newSet.getElement();
+			union.addElement(id);
+			newSet.removeElement(id);
+		}
+		return union;
 	}
 
-	public Set<E> intersection(Set<E> col) {
-		return null;
+	public Set<E> intersection(Set<E> col){
+		Set<E> intersection = new Set<E>();
+		Set<E> set1 = this.clone();
+		Set<E> set2 = col.clone();
+		while(!set1.isEmpty()){
+			E id = set1.getElement();
+			if(set2.contains(id)){
+				try {
+					intersection.addElement(id);
+				} catch (APException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			set1.removeElement(id);
+		}
+		return intersection;
 	}
 
 	public Set<E> symmetricDifference(Set<E> col) throws APException {

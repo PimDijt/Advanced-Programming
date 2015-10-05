@@ -88,14 +88,15 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 		if(current.data.compareTo(d) == 0){
 			return true;
 		}
-		while (current.next != null) {
+		
+		while (goToNext()) {
 			if (current.data.compareTo(d) == 0) {
 				return true;
 			} else if (current.data.compareTo(d) > 0) {
 				break;
 			}
-			current = current.next;
 		}
+		
 		return false;
 	}
 

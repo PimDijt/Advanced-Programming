@@ -58,7 +58,7 @@ public class Main {
 	void printStatement(Scanner input) throws APException{
 		character(input, '?');
 		Set<Number> set = expression(input);
-		eoln(input);
+		//eoln(input);
 		printSet(set);
 	}
 	
@@ -105,14 +105,13 @@ public class Main {
 		while(nextCharIsAdditiveOperator(input)){
 			if(nextCharIs(input, '+')){
 				character(input, '+');
-				
-				//union
+				set = set.union(term(input));
 			}else if(nextCharIs(input, '-')){
 				character(input, '-');
-				//difference
+				set = set.difference(term(input));
 			}else if(nextCharIs(input, '|')){
 				character(input, '|');
-				//symdiff
+				set = set.symmetricDifference(term(input));
 			}
 		}
 		return set;
@@ -122,7 +121,7 @@ public class Main {
 		Set<Number> set = factor(input);
 		while(nextCharIs(input, '*')){
 			character(input, '*');
-			// intersection
+			set = set.intersection(term(input));
 		}
 		return set;
 	}
@@ -131,9 +130,11 @@ public class Main {
 		Set<Number> set = new Set<Number>();
 		if(nextCharIsLetter(input)){
 			Identifier id = identifier(input);
+
 			if(!table.contains(id)){
 				throw new APException("Identifier is not defined");
 			}
+
 			set = table.getValue(id);
 		} else if(nextCharIs(input, '(')){
 			set = complexFactor(input);
@@ -210,7 +211,7 @@ public class Main {
 	
 	void eoln (Scanner input) throws APException {
 	    if (input.hasNext()) {
-	    	throw new APException("........");
+	    	throw new APException("eoln error");
 	    }
 	}
 		

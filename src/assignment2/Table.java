@@ -42,7 +42,7 @@ public class Table<K extends Data<K>, V extends Clonable<V>> implements TableInt
 	public V getValue(K k) {
 		TableEntry<K,V> row = new TableEntry<K,V>(k, null);
 		table.find(row);
-		return table.retrieve().value;
+		return table.retrieve().getValue();
 	}
 
 
