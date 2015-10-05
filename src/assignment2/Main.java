@@ -21,7 +21,7 @@ public class Main {
 			try {
 				program(in);
 			} catch (APException e) {
-				e.printStackTrace();
+				out.println(e.getMessage());
 			}
 		}
 	}
@@ -32,7 +32,6 @@ public class Main {
 		Scanner rowScanner = new Scanner(row);
 		rowScanner.useDelimiter("");
 		statement(rowScanner);
-
 	}
 	
 	void statement(Scanner input) throws APException{		
@@ -41,9 +40,9 @@ public class Main {
 		}else if(nextCharIs(input, '?')){
 			printStatement(input);
 		}else if(nextCharIs(input, '/')){
-			comment(input);
+			return;
 		}else{
-			throw new APException(".......");
+			throw new APException("Invalid statement.");
 		}
 	}
 	
@@ -58,7 +57,7 @@ public class Main {
 	void printStatement(Scanner input) throws APException{
 		character(input, '?');
 		Set<Number> set = expression(input);
-		//eoln(input);
+		eoln(input);
 		printSet(set);
 	}
 	
@@ -74,19 +73,11 @@ public class Main {
 	
 	void printNumber(Number number){
 		for(int i=0; i<number.size(); i++){
-			out.printf("%c ", number.getChar(i));
+			out.printf("%c", number.getChar(i));
 		}
+		out.print(" ");
 	}
-	
-	void comment(Scanner input) throws APException{
-		character(input, '/');
-		while(input.hasNext()){
-			nextChar(input);
-		}
-		eoln(input);
-	}
-	
-	
+		
 	Identifier identifier(Scanner input) throws APException{
 		Identifier id = new Identifier();
 		if(!nextCharIsLetter(input)){
@@ -94,7 +85,7 @@ public class Main {
 		}
 		id.init(nextChar(input));
 		
-		while(nextCharIsLetter(input) || nextCharIsDigit(input)){
+		while(nextCharIsAlphaNumeric(input)){
 			id.addChar(nextChar(input));
 		}
 		return id;
@@ -134,8 +125,8 @@ public class Main {
 			if(!table.contains(id)){
 				throw new APException("Identifier is not defined");
 			}
-
 			set = table.getValue(id);
+			
 		} else if(nextCharIs(input, '(')){
 			set = complexFactor(input);
 		} else{
@@ -160,10 +151,8 @@ public class Main {
 	
 	Set<Number> rowNaturalNumbers(Scanner input) throws APException{
 		Set<Number> set = new Set<Number>();
-		if(nextCharIs(input, '}')){
-			//empty set
-			return set;
-		}
+		if(nextCharIs(input, '}')) return set;
+		
 		Number first = naturalNumber(input);
 		set.addElement(first);
 		while(nextCharIs(input, ',')){
@@ -171,6 +160,12 @@ public class Main {
 			Number number = naturalNumber(input);
 			set.addElement(number);
 		}
+		
+		/*do {
+			Number number = naturalNumber(input);
+			set.addElement(number);
+		} while(thereIsNextElement());*/
+		
 		return set;
 	}
  	
@@ -185,7 +180,7 @@ public class Main {
 			if(!nextCharIsDigit(input)){
 				return num;
 			}
-			throw new APException("Numbers larget han 0 cannot start with a 0");
+			throw new APException("Numbers larger han 0 cannot start with a 0");
 		}
 		
 		while(nextCharIsDigit(input)){
@@ -199,8 +194,9 @@ public class Main {
 	}
 	
 	void character (Scanner input, char c) throws APException {
+		if (!input.hasNext()) throw new APException("Statement has not been completed, expected " + c);
 	    if (! nextCharIs(input, c)) {
-	    	throw new APException("Read " + nextChar(input) + " and expected " + c + "");
+	    	throw new APException("Read " + nextChar(input) + " and expected " + c);
 	    }
 	    nextChar(input);
 	}
@@ -227,6 +223,9 @@ public class Main {
 		return in.hasNext("[a-zA-Z]");
 	}
 
+	boolean nextCharIsAlphaNumeric (Scanner in) {
+		return (nextCharIsLetter(in) || nextCharIsDigit(in));
+	}
 	
 	public static void main(String[] args){
 		new Main().start();

@@ -51,7 +51,7 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	 * @precondition: -
 	 * @postcondition: The amount of entries in the table is returned
 	 */
-	int size();
+	int getSize();
 	
 	/**
 	 * Adds a new key with a corresponding value

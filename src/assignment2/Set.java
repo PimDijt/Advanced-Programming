@@ -1,6 +1,5 @@
 package assignment2;
 
-
 public class Set<E extends Data<E>> implements SetInterface<E> {
 
 	private List<E> set;
@@ -47,7 +46,7 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 	}
 
 	public E getElement() {
-		set.goToLast();
+		set.goToFirst();
 		return set.retrieve();
 	}
 
@@ -85,7 +84,6 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 				try {
 					intersection.addElement(id);
 				} catch (APException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -95,6 +93,6 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 	}
 
 	public Set<E> symmetricDifference(Set<E> col) throws APException {
-		return null;
+		return col.difference(this).union(this.difference(col));
 	}
 }

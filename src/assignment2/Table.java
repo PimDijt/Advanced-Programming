@@ -19,7 +19,6 @@ public class Table<K extends Data<K>, V extends Clonable<V>> implements TableInt
 		return clone;
 	}
 
-
 	public boolean isEmpty() {
 		return table.isEmpty();
 	}
@@ -29,21 +28,27 @@ public class Table<K extends Data<K>, V extends Clonable<V>> implements TableInt
 		return table.find(key);
 	}
 
-	public int size() {
+	public int getSize() {
 		return table.size();
 	}
 
 	public Table<K,V> addKeyValue(K k, V v) {
-		TableEntry<K,V> row = new TableEntry<K,V>(k, v);
-		table.insert(row);
+		TableEntry<K,V> entry = new TableEntry<K,V>(k, v);
+		if (this.contains(k)) remove(k); 
+		table.insert(entry);
+		return this;
+	}
+	
+	public Table<K,V> remove(K k) {
+		TableEntry<K,V> entry = new TableEntry<K,V>(k, null);
+		table.find(entry);
+		table.remove();
 		return this;
 	}
 
 	public V getValue(K k) {
-		TableEntry<K,V> row = new TableEntry<K,V>(k, null);
-		table.find(row);
+		TableEntry<K,V> entry = new TableEntry<K,V>(k, null);
+		table.find(entry);
 		return table.retrieve().getValue();
 	}
-
-
 }

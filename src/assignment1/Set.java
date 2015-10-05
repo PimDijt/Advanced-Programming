@@ -96,7 +96,6 @@ public class Set implements SetInterface {
 			}
 			foreignSet.removeIdentifier(tmp);
 		}
-		
 		return result;
 	}
 	

@@ -25,29 +25,26 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 	}
 
 	public List<E> insert(E d) {
-
-		if (!goToFirst()) {
+		if (isEmpty()) {
 			first = current = last = new Node<E>(d.clone());
 		} else {
 			goToFirst();
 			if (current.data.compareTo(d) > 0) {
 				first = new Node<E>(d, null, current);
 				current.prior = first;
-
 			} else {
-				while (current.data.compareTo(d) <= 0) {
-					if (current.next == null) {
-						last = new Node<E>(d, current, null);
-						current.next = last;
-						current = last;
+				while(goToNext()){
+					if (current.data.compareTo(d) > 0){
+						Node<E> tmp = new Node<E>(d, current.prior, current);
+						tmp.prior.next = tmp;
+						current.prior = tmp;
 						size++;
 						return this;
 					}
-					current = current.next;
-				}
-				Node<E> tmp = new Node<E>(d, current.prior, current);
-				tmp.prior.next = tmp;
-				current.prior = tmp;
+				}				
+				last = new Node<E>(d, current, null);
+				current.next = last;
+				goToLast();
 			}
 		}
 		size++;
@@ -66,37 +63,28 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 		if (current == first) {
 			first = first.next;
 			first.prior = null;
-			current = first;
+			goToFirst();
 		} else if (current == last) {
 			last = last.prior;
 			last.next = null;
-			current = last;
+			goToLast();
 		} else {
 			current.prior.next = current.next;
 			current.next.prior = current.prior;
-			current = current.next;
+			goToNext();
 		}
 		size--;
 		return this;
 	}
 
 	public boolean find(E d) {
-		if(isEmpty()){
-			return false;
-		}
+		if(isEmpty()) return false;
+		
 		goToFirst();
-		if(current.data.compareTo(d) == 0){
-			return true;
-		}
-		
-		while (goToNext()) {
-			if (current.data.compareTo(d) == 0) {
-				return true;
-			} else if (current.data.compareTo(d) > 0) {
-				break;
-			}
-		}
-		
+		do {
+			if (current.data.compareTo(d) == 0) return true;
+			if (current.data.compareTo(d) > 0) break;
+		} while(goToNext());
 		return false;
 	}
 
@@ -130,7 +118,6 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 		}
 		current = current.prior;
 		return true;
-
 	}
 
 	public List<E> clone() {
