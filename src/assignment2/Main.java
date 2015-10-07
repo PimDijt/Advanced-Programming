@@ -71,8 +71,8 @@ public class Main {
 		out.printf("\n");
 	}
 	
-	void printNumber(Number number){
-		for(int i=0; i<number.size(); i++){
+	void printNumber(Number number) {
+		for (int i = 0; i < number.size(); i++) {
 			out.printf("%c", number.getChar(i));
 		}
 		out.print(" ");
@@ -94,14 +94,11 @@ public class Main {
 	Set<Number> expression(Scanner input) throws APException{
 		Set<Number> set = term(input);
 		while(nextCharIsAdditiveOperator(input)){
-			if(nextCharIs(input, '+')){
-				character(input, '+');
+			if(characterB(input, '+')){
 				set = set.union(term(input));
-			}else if(nextCharIs(input, '-')){
-				character(input, '-');
+			}else if(characterB(input, '-')){
 				set = set.difference(term(input));
-			}else if(nextCharIs(input, '|')){
-				character(input, '|');
+			}else if(characterB(input, '|')){
 				set = set.symmetricDifference(term(input));
 			}
 		}
@@ -110,8 +107,7 @@ public class Main {
 	
 	Set<Number> term(Scanner input) throws APException{
 		Set<Number> set = factor(input);
-		while(nextCharIs(input, '*')){
-			character(input, '*');
+		while (characterB(input, '*')){
 			set = set.intersection(term(input));
 		}
 		return set;
@@ -121,12 +117,8 @@ public class Main {
 		Set<Number> set = new Set<Number>();
 		if(nextCharIsLetter(input)){
 			Identifier id = identifier(input);
-
-			if(!table.contains(id)){
-				throw new APException("Identifier is not defined");
-			}
+			if(!table.contains(id)) throw new APException("Identifier is not defined");
 			set = table.getValue(id);
-			
 		} else if(nextCharIs(input, '(')){
 			set = complexFactor(input);
 		} else{
@@ -152,19 +144,11 @@ public class Main {
 	Set<Number> rowNaturalNumbers(Scanner input) throws APException{
 		Set<Number> set = new Set<Number>();
 		if(nextCharIs(input, '}')) return set;
-		
-		Number first = naturalNumber(input);
-		set.addElement(first);
-		while(nextCharIs(input, ',')){
-			character(input, ',');
+
+		do {
 			Number number = naturalNumber(input);
 			set.addElement(number);
-		}
-		
-		/*do {
-			Number number = naturalNumber(input);
-			set.addElement(number);
-		} while(thereIsNextElement());*/
+		} while(characterB(input, ','));
 		
 		return set;
 	}
@@ -194,21 +178,23 @@ public class Main {
 	}
 	
 	void character (Scanner input, char c) throws APException {
-		if (!input.hasNext()) throw new APException("Statement has not been completed, expected " + c);
-	    if (! nextCharIs(input, c)) {
-	    	throw new APException("Read " + nextChar(input) + " and expected " + c);
-	    }
+		if (!input.hasNext()) 	   throw new APException("Statement has not been completed, expected " + c);
+	    if (!nextCharIs(input, c)) throw new APException("Read " + nextChar(input) + " and expected " + c);
 	    nextChar(input);
 	}
+	
+	boolean characterB (Scanner input, char c) throws APException {
+		if (!nextCharIs(input, c)) return false;
+		character(input, c);
+	    return true;
+	} 
 	
 	char nextChar (Scanner in) {
 		return in.next().charAt(0);
 	}
 	
 	void eoln (Scanner input) throws APException {
-	    if (input.hasNext()) {
-	    	throw new APException("eoln error");
-	    }
+	    if (input.hasNext()) throw new APException("eoln error");
 	}
 		
 	boolean nextCharIsDigit (Scanner in) {

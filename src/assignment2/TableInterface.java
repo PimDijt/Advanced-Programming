@@ -69,7 +69,4 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	 * @postcondition: The corresponding value of the key is returned
 	 */
 	V getValue(K k);
-
-
-	
 }

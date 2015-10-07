@@ -12,7 +12,6 @@ public class List<E extends Data<E>> implements ListInterface<E> {
 	public List<E> init() {
 		first = current = last = null;
 		size = 0;
-
 		return this;
 	}
 
