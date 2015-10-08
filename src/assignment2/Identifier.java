@@ -31,11 +31,11 @@ public class Identifier implements IdentifierInterface {
 	public boolean isEqualTo(Identifier id) {
 		if (this.getSize() != id.getSize()) {
 			return false;
-		} else {
-			for (int i = 0; i < this.getSize(); i++) {
-				if (this.getChar(i) != id.getChar(i)) {
-					return false;
-				}
+		}
+		
+		for (int i = 0; i < this.getSize(); i++) {
+			if (this.getChar(i) != id.getChar(i)) {
+				return false;
 			}
 		}
 		return true;
@@ -56,5 +56,4 @@ public class Identifier implements IdentifierInterface {
 	private StringBuffer getValue(){
 		return this.id;
 	}
-	
 }

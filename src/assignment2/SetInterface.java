@@ -56,11 +56,10 @@ public interface SetInterface<E extends Data<E>> extends Clonable<Set<E>>{
 	 * Adds a Data object to the set
 	 * 
 	 * @precondition: -
-	 * @postcondition: Succes:  The data objects is added to the set
-	 * 				   Failure: An exception is thrown
-	 * @throws: 	   The set contains more than the maximum allowed elements
+	 * @postcondition: The data objects is added to the set
 	 */	
-	SetInterface<E> addElement(E id) throws Exception;
+
+	SetInterface<E> addElement(E id) ;
 
 	/**
 	 * Removes data object id from the set
@@ -91,12 +90,10 @@ public interface SetInterface<E extends Data<E>> extends Clonable<Set<E>>{
 	 * Exception is thrown when union result exceeds 20 elements.
 	 * 
 	 * @precondition: - Set should not be empty 
-	 * @postcondition: 	Succes:  A set of the union between col and this set is returned
-	 * 					Failure: Throws exception  
-	 * @throws 			The union of the two sets contains more than the maximum allowed elements
+	 * @postcondition: 	A set of the union between col and this set is returned
 	 * 
 	 */
-	Set<E> union(Set<E> col) throws APException;
+	Set<E> union(Set<E> col);
 
 	/**
 	 * Returns a set of the intersection between col and this set

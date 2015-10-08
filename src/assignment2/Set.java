@@ -31,10 +31,8 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 		return set.isEmpty();
 	}
 
-	public Set<E> addElement(E id) throws APException {
-		if(set.find(id)){
-			set.remove();
-		}
+	public Set<E> addElement(E id) {
+		if(set.find(id)) set.remove(); 
 		set.insert(id);
 		return this;
 	}
@@ -52,7 +50,8 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 
 	public Set<E> difference(Set<E> col) {
 		Set<E> difference = this.clone();
-		Set<E> newSet = col.clone();
+		Set<E> newSet 	  = col.clone();
+		
 		while(!newSet.isEmpty()){
 			E id = newSet.getElement();
 			if(difference.contains(id)){
@@ -63,9 +62,10 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 		return difference;
 	}
 
-	public Set<E> union(Set<E> col) throws APException {
+	public Set<E> union(Set<E> col) {
 		Set<E> union = this.clone();
 		Set<E> newSet = col.clone();
+		
 		while(!newSet.isEmpty()){
 			E id = newSet.getElement();
 			union.addElement(id);
@@ -78,21 +78,16 @@ public class Set<E extends Data<E>> implements SetInterface<E> {
 		Set<E> intersection = new Set<E>();
 		Set<E> set1 = this.clone();
 		Set<E> set2 = col.clone();
+		
 		while(!set1.isEmpty()){
 			E id = set1.getElement();
-			if(set2.contains(id)){
-				try {
-					intersection.addElement(id);
-				} catch (APException e) {
-					e.printStackTrace();
-				}
-			}
+			if(set2.contains(id)) intersection.addElement(id);
 			set1.removeElement(id);
 		}
 		return intersection;
 	}
 
-	public Set<E> symmetricDifference(Set<E> col) throws APException {
+	public Set<E> symmetricDifference(Set<E> col) {
 		return col.difference(this).union(this.difference(col));
 	}
 }

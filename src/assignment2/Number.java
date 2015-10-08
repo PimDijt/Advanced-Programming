@@ -9,7 +9,6 @@ public class Number implements NumberInterface{
 		num.append('0');
 	}
 	
-	
 	public Number clone() {
 		Number number = new Number();
 		number.init(this.getChar(0));
@@ -18,21 +17,18 @@ public class Number implements NumberInterface{
 			number.addDigit(this.getChar(i));
 		}
 		
-		return number;
-		
+		return number;	
 	}
 
 	public int compareTo(Number number) {
 		return this.num.toString().compareTo(number.num.toString());
 	}
 
-
 	public Number init(char c) {
 		num.setLength(0);
 		num.append(c);
 		return this;
 	}
-
 
 	public Number addDigit(char c) {
 		num.append(c);
@@ -50,11 +46,10 @@ public class Number implements NumberInterface{
 	public boolean isEqualTo(Number number) {
 		if (this.size() != number.size()) {
 			return false;
-		} else {
-			for (int i = 0; i < this.size(); i++) {
-				if (this.getChar(i) != number.getChar(i)) {
-					return false;
-				}
+		} 
+		for (int i = 0; i < this.size(); i++) {
+			if (this.getChar(i) != number.getChar(i)) {
+				return false;
 			}
 		}
 		return true;

@@ -7,5 +7,4 @@ public interface Clonable<E> extends Cloneable {
     */
 
     public E clone();
-
 }

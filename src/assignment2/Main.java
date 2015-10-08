@@ -29,8 +29,10 @@ public class Main {
 	void program(Scanner input) throws APException {
 		String row = input.nextLine();
 		row = row.replaceAll("\\s+", "");
+		
 		Scanner rowScanner = new Scanner(row);
 		rowScanner.useDelimiter("");
+		
 		statement(rowScanner);
 	}
 	
@@ -51,6 +53,7 @@ public class Main {
 		character(input, '=');
 		Set<Number> set = expression(input);
 		eoln(input);
+		
 		table.addKeyValue(id, set);
 	}
 	

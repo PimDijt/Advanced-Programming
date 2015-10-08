@@ -24,9 +24,6 @@ public class TableEntry<K extends Data<K>, V extends Clonable<V>> implements Dat
 	}
 	
 	public int compareTo(TableEntry<K,V> row) {
-		int test = this.getKey().compareTo(row.getKey());
-		return test;
+		return this.getKey().compareTo(row.getKey());
 	}
-
-	
 }
