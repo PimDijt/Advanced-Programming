@@ -17,7 +17,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface SetInterface<E extends Data<E>> extends Clonable<Set<E>>{
+public interface SetInterface<E extends Data<E>> extends Clonable<SetInterface<E>>{
 		
 	/**
 	 * Initializes an empty set

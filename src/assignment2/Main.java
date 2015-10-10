@@ -8,12 +8,12 @@ public class Main {
 	
 	Scanner in;
 	PrintStream out;
-	Table<Identifier, Set<Number>> table;
+	Table<IdentifierInterface, SetInterface<Number>> table;
 
 	Main() {
 		in    = new Scanner(System.in);
 		out   = new PrintStream(System.out);
-		table = new Table<Identifier,Set<Number>>();
+		table = new Table<IdentifierInterface,SetInterface<Number>>();
 	}
 	
 	void start(){
@@ -83,6 +83,7 @@ public class Main {
 		
 	Identifier identifier(Scanner input) throws APException{
 		Identifier id = new Identifier();
+		
 		if(!nextCharIsLetter(input)){
 			throw new APException("Identifier has to start with a letter!");
 		}
@@ -121,7 +122,7 @@ public class Main {
 		if(nextCharIsLetter(input)){
 			Identifier id = identifier(input);
 			if(!table.contains(id)) throw new APException("Identifier is not defined");
-			set = table.getValue(id);
+			set = (Set<Number>) table.getValue(id);
 		} else if(nextCharIs(input, '(')){
 			set = complexFactor(input);
 		} else{
@@ -157,16 +158,13 @@ public class Main {
 	}
  	
 	Number naturalNumber(Scanner input) throws APException{
+		if(!nextCharIsDigit(input)) throw new APException("Numbers have to start with a digit");
+		
 		Number num = new Number();
-		if(!nextCharIsDigit(input)){
-			throw new APException("Numbers have to start with a digit");
-		}
 		num.init(nextChar(input));
 		
 		if(num.getChar(0) == '0'){
-			if(!nextCharIsDigit(input)){
-				return num;
-			}
+			if(!nextCharIsDigit(input))	return num;
 			throw new APException("Numbers larger han 0 cannot start with a 0");
 		}
 		
@@ -197,7 +195,7 @@ public class Main {
 	}
 	
 	void eoln (Scanner input) throws APException {
-	    if (input.hasNext()) throw new APException("eoln error");
+	    if (input.hasNext()) throw new APException("Only one statement per line.");
 	}
 		
 	boolean nextCharIsDigit (Scanner in) {

@@ -28,7 +28,7 @@ public class Identifier implements IdentifierInterface {
 		return id.length();
 	}
 	
-	public boolean isEqualTo(Identifier id) {
+	public boolean isEqualTo(IdentifierInterface id) {
 		if (this.getSize() != id.getSize()) {
 			return false;
 		}
@@ -49,11 +49,13 @@ public class Identifier implements IdentifierInterface {
 		return identifier;
 	}
 	
-	public int compareTo(Identifier identifier) {
-		return this.getValue().toString().compareTo(identifier.getValue().toString());		
-	}
-	
-	private StringBuffer getValue(){
-		return this.id;
+	public int compareTo(IdentifierInterface identifier) {
+		StringBuffer identifierContent = new StringBuffer();
+
+		for (int i = 0; i < identifier.getSize(); i++) {
+			identifierContent.append(identifier.getChar(i));
+		}
+		
+		return this.id.toString().compareTo(identifierContent.toString());		
 	}
 }

@@ -19,8 +19,7 @@ package assignment2;
  *              </dl>
  **/
 
-public interface IdentifierInterface extends Data<Identifier>{
-	
+public interface IdentifierInterface extends Data<IdentifierInterface>{
 	
 	/**
 	 * Initializes the Identifier object 
@@ -30,7 +29,6 @@ public interface IdentifierInterface extends Data<Identifier>{
 	 */
 	IdentifierInterface init(char c);
 
-
 	/**
 	 * Adds character c to the Identifier
 	 * 
@@ -39,7 +37,6 @@ public interface IdentifierInterface extends Data<Identifier>{
 	 */
 	IdentifierInterface addChar(char c);
 
-
 	/**
 	 * Returns a char at position index from the Identifier
 	 * 
@@ -47,7 +44,6 @@ public interface IdentifierInterface extends Data<Identifier>{
 	 * @postcondition: The character at position index is returned
 	 */
 	char getChar(int index);
-
 
 	/**
 	 * Returns the size of the Identifier
@@ -64,6 +60,5 @@ public interface IdentifierInterface extends Data<Identifier>{
 	 * @postcondition: False: The Identifiers are not equal 
 	 * 				   True:  The Identifiers are equal
 	 */
-	boolean isEqualTo(Identifier id);
-
+	boolean isEqualTo(IdentifierInterface id);	
 }
