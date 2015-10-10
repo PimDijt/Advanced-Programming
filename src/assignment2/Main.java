@@ -11,8 +11,8 @@ public class Main {
 	Table<Identifier, Set<Number>> table;
 
 	Main() {
-		in = new Scanner(System.in);
-		out = new PrintStream(System.out);
+		in    = new Scanner(System.in);
+		out   = new PrintStream(System.out);
 		table = new Table<Identifier,Set<Number>>();
 	}
 	
