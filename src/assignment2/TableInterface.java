@@ -54,19 +54,19 @@ public interface TableInterface<K extends Data<K>, V extends Clonable<V>> extend
 	int getSize();
 	
 	/**
-	 * Adds a new key with a corresponding value
-	 * 
-	 * @precondition: -
-	 * @postcondition: The key and its corresponding value is added to the end of the table. 
-	 * 				   If the key was already in the table, only the value is updated.	
-	 */
-	TableInterface<K,V> addKeyValue(K k, V v);
-	
-	/**
 	 * Returns the value which is linked to the given key
 	 *
 	 * @precondition:  The key is in the table
 	 * @postcondition: The corresponding value of the key is returned
 	 */
 	V getValue(K k);
+
+	/**
+	 * Adds a new key with a corresponding value
+	 * 
+	 * @precondition: -
+	 * @postcondition: The key and its corresponding value is added to the table. 
+	 * 				   If the key was already in the table, the value is updated.	
+	 */
+	TableInterface<K,V> addKeyValue(K k, V v);
 }

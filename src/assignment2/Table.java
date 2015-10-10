@@ -32,23 +32,23 @@ public class Table<K extends Data<K>, V extends Clonable<V>> implements TableInt
 		return table.size();
 	}
 
+	public V getValue(K k) {
+		TableEntry<K,V> entry = new TableEntry<K,V>(k, null);
+		table.find(entry);
+		return table.retrieve().getValue();
+	}
+
 	public Table<K,V> addKeyValue(K k, V v) {
 		TableEntry<K,V> entry = new TableEntry<K,V>(k, v);
 		if (this.contains(k)) remove(k); 
 		table.insert(entry);
 		return this;
 	}
-	
-	public Table<K,V> remove(K k) {
+
+	private Table<K,V> remove(K k) {
 		TableEntry<K,V> entry = new TableEntry<K,V>(k, null);
 		table.find(entry);
 		table.remove();
 		return this;
-	}
-
-	public V getValue(K k) {
-		TableEntry<K,V> entry = new TableEntry<K,V>(k, null);
-		table.find(entry);
-		return table.retrieve().getValue();
 	}
 }
