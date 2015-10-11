@@ -28,7 +28,7 @@ public class Main {
 	
 	void program(Scanner input) throws APException {
 		String row = input.nextLine();
-		row = row.replaceAll("\\s+", "");
+		//row = row.replaceAll("\\s+", "");
 		
 		Scanner rowScanner = new Scanner(row);
 		rowScanner.useDelimiter("");
@@ -37,6 +37,7 @@ public class Main {
 	}
 	
 	void statement(Scanner input) throws APException{		
+		removeWhitespace(input);
 		if(nextCharIsLetter(input)){
 			assignment(input);
 		}else if(nextCharIs(input, '?')){
@@ -50,8 +51,11 @@ public class Main {
 	
 	void assignment(Scanner input) throws APException{
 		Identifier id = identifier(input);
+		removeWhitespace(input);
 		character(input, '=');
+		removeWhitespace(input);
 		Set<Number> set = expression(input);
+		removeWhitespace(input);
 		eoln(input);
 		
 		table.addKeyValue(id, set);
@@ -59,7 +63,9 @@ public class Main {
 	
 	void printStatement(Scanner input) throws APException{
 		character(input, '?');
+		removeWhitespace(input);
 		Set<Number> set = expression(input);
+		removeWhitespace(input);
 		eoln(input);
 		printSet(set);
 	}
@@ -97,12 +103,16 @@ public class Main {
 
 	Set<Number> expression(Scanner input) throws APException{
 		Set<Number> set = term(input);
+		removeWhitespace(input);
 		while(nextCharIsAdditiveOperator(input)){
-			if(characterB(input, '+')){
+			if(characterBoolean(input, '+')){
+				removeWhitespace(input);
 				set = set.union(term(input));
-			}else if(characterB(input, '-')){
+			}else if(characterBoolean(input, '-')){
+				removeWhitespace(input);
 				set = set.difference(term(input));
-			}else if(characterB(input, '|')){
+			}else if(characterBoolean(input, '|')){
+				removeWhitespace(input);
 				set = set.symmetricDifference(term(input));
 			}
 		}
@@ -111,7 +121,9 @@ public class Main {
 	
 	Set<Number> term(Scanner input) throws APException{
 		Set<Number> set = factor(input);
-		while (characterB(input, '*')){
+		removeWhitespace(input);
+		while (characterBoolean(input, '*')){
+			removeWhitespace(input);
 			set = set.intersection(term(input));
 		}
 		return set;
@@ -119,40 +131,53 @@ public class Main {
 	
 	Set<Number> factor(Scanner input) throws APException{
 		Set<Number> set = new Set<Number>();
+		removeWhitespace(input);
 		if(nextCharIsLetter(input)){
 			Identifier id = identifier(input);
+			removeWhitespace(input);
 			if(!table.contains(id)) throw new APException("Identifier is not defined");
 			set = (Set<Number>) table.getValue(id);
 		} else if(nextCharIs(input, '(')){
 			set = complexFactor(input);
+			removeWhitespace(input);
 		} else{
 			set = set(input);
+			removeWhitespace(input);
 		}
 		return set;
 	}
 	
 	Set<Number> complexFactor(Scanner input) throws APException{
 		character(input, '(');
+		removeWhitespace(input);
 		Set<Number> set = expression(input);
+		removeWhitespace(input);
 		character(input, ')');
+		removeWhitespace(input);
 		return set;
 	}
 	
 	Set<Number> set(Scanner input) throws APException{
 		character(input, '{');
+		removeWhitespace(input);
 		Set<Number> set = rowNaturalNumbers(input);
+		removeWhitespace(input);
 		character(input, '}');
+		removeWhitespace(input);
 		return set;
 	}
 	
 	Set<Number> rowNaturalNumbers(Scanner input) throws APException{
 		Set<Number> set = new Set<Number>();
+		removeWhitespace(input);
 		if(nextCharIs(input, '}')) return set;
 
 		do {
+			removeWhitespace(input);
 			Number number = naturalNumber(input);
 			set.addElement(number);
-		} while(characterB(input, ','));
+			removeWhitespace(input);
+		} while(characterBoolean(input, ','));
 		
 		return set;
 	}
@@ -174,6 +199,12 @@ public class Main {
 		return num;		
 	}
 	
+	void removeWhitespace(Scanner in){
+		while(in.hasNext(" ")){
+			in.next();
+		}
+	}
+	
 	boolean nextCharIsAdditiveOperator(Scanner input){
 		return nextCharIs(input, '+') || nextCharIs(input, '|') || nextCharIs(input, '-');
 	}
@@ -184,7 +215,7 @@ public class Main {
 	    nextChar(input);
 	}
 	
-	boolean characterB (Scanner input, char c) throws APException {
+	boolean characterBoolean (Scanner input, char c) throws APException {
 		if (!nextCharIs(input, c)) return false;
 		character(input, c);
 	    return true;
