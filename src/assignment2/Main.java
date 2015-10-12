@@ -27,8 +27,7 @@ public class Main {
 	}
 	
 	void program(Scanner input) throws APException {
-		String row = input.nextLine();
-		//row = row.replaceAll("\\s+", "");
+		String row = input.nextLine();		
 		
 		Scanner rowScanner = new Scanner(row);
 		rowScanner.useDelimiter("");
