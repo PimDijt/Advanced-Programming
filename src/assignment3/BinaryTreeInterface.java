@@ -75,7 +75,7 @@ public interface BinaryTreeInterface<E extends Data<E>>{
 	 *					This object of the type Iterator<E> was subsequently
  	 *					returned. 
 	 */
-	Iterator<E> iterateUp();
+	Iterator<E> ascendingIterator();
 	
 	/**
 	 * Iterates the BinaryTree object downwards
@@ -88,5 +88,5 @@ public interface BinaryTreeInterface<E extends Data<E>>{
 	 *                    returned.
 	 * 
 	 */
-	Iterator<E> iterateDown();
+	Iterator<E> descendingIterator();
 }

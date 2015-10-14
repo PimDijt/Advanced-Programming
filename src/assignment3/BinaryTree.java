@@ -1,12 +1,15 @@
 package assignment3;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 
 	Node<E> root;
+	ArrayList arraylist;
 	
 	BinaryTree(){
+		 arraylist = new ArrayList();
 	}
 	
 	public BinaryTree<E> init() {
@@ -68,7 +71,7 @@ public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 		if(root == null){
 			return new Node<E>(e);
 		}
-		if(e.compareTo(root.data) < 0){
+		if(e.compareTo(root.data) > 0){
 			root.left  = insert(root.left, e);
 		} else { 
 			root.right = insert(root.right, e);
@@ -76,11 +79,14 @@ public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 		return root;
 	}
 
-	public Iterator<E> iterateUp() {
+	public Iterator<E> ascendingIterator() {
+		
+		
+		
 		return null;
 	}
 
-	public Iterator<E> iterateDown() {
+	public Iterator<E> descendingIterator() {
 		return null;
 	}
 }

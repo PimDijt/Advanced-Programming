@@ -1,17 +1,193 @@
 package assignment3;
 
-import java.util.Iterator;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 
 public class Main {
 
-	public static void main(String[] args) {
-		Identifier a = new Identifier().init('a');
-		Identifier b = new Identifier().init('b');
+	BinaryTree<IdentifierInterface> tree;
+	Scanner in;
+	PrintStream out;
+	BufferedReader file;
+	
+	boolean lowerCase,
+			descending;
+	
+	Main(){
+		tree = new BinaryTree<IdentifierInterface>();
+		in = new Scanner(System.in);
+		out = new PrintStream(System.out);
+		lowerCase = descending = false;
+	}
+	
+	
+	void start(){
+		String row = in.nextLine();
+		Scanner rowScanner = new Scanner(row);
+		rowScanner.useDelimiter("");
 		
-		BinaryTree<IdentifierInterface> Boom = new BinaryTree<IdentifierInterface>();
-		Boom.insert(a);
-		Boom.insert(b);
-		Boom.remove(a);
-		Boom.remove(b);
+		try {
+			commandLineArguments(rowScanner);
+		} catch (APException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	void commandLineArguments(Scanner input) throws APException{
+		removeWhiteSpace(input);
+		if(nextCharIs(input, '-')){
+			commandLineOptions(input);
+		}
+		removeWhiteSpace(input);
+		files(input);
+	}
+	
+	void commandLineOptions(Scanner input) throws APException{
+		option(input);
+		removeWhiteSpace(input);
+		while(nextCharIs(input, '-')){
+			option(input);
+			removeWhiteSpace(input);
+		}
+	}
+	
+	void option(Scanner input) throws APException{
+		character(input, '-');
+		removeWhiteSpace(input);
+		if(nextCharIs(input, 'i')){
+			character(input, 'i');
+			lowerCase = true;
+		}else if(nextCharIs(input, 'd')){
+			character(input, 'd');
+			descending = true;
+		}else{
+			throw new APException("'"+nextChar(input)+"' is not an option.");
+		}
+	}
+	
+	void files(Scanner input){
+		String files = input.nextLine();
+		Scanner fileScanner = new Scanner(files);
+		fileScanner.useDelimiter(" ");
+		
+		try {
+			file = new BufferedReader(new FileReader(fileScanner.next()));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		text(file);
+		
+		while(fileScanner.hasNext()){
+			try {
+				file = new BufferedReader(new FileReader(fileScanner.next()));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			text(file);
+		}
+	}
+		
+	void text(BufferedReader input){
+		String line;
+		try {
+			while((line = input.readLine()) != null){
+				Scanner lineScanner = new Scanner(line);
+				lineScanner.useDelimiter("");
+				readLine(lineScanner);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		printTree();
+	}
+	
+	void readLine(Scanner input){
+		removeWhiteSpace(input);
+		while (input.hasNext()) {
+			
+			if (nextCharIsLetter(input)) {
+				Identifier identifier = identifier(input);
+				if(lowerCase == true){
+					identifier = lowerCase(identifier);
+				}
+				tree.insert(identifier);
+			}else{
+				nextChar(input);
+			}
+		}
+	}
+	
+	Identifier identifier(Scanner input){
+		Identifier id = new Identifier();
+		id.init(nextChar(input));
+		
+		while(nextCharIsAlphaNumeric(input)){
+			id.addChar(nextChar(input));
+		}
+		return id;
+	}
+	
+	void printTree(){
+		
+	}
+	
+	Identifier lowerCase(Identifier id){
+		String s = "";
+		for(int i=0; i<id.getSize(); i++){
+			s += id.getChar(i);
+		}
+		String identifier = s.toLowerCase();
+		id.init(identifier.charAt(0));
+		
+		for(int i=1; i< identifier.length(); i++){
+			id.addChar(identifier.charAt(i));
+		}
+		return id;
+	}
+	
+	
+	void character (Scanner input, char c) throws APException {
+		if (!input.hasNext()) 	   throw new APException("Statement has not been completed, expected " + c);
+	    if (!nextCharIs(input, c)) throw new APException("Read " + nextChar(input) + " and expected " + c);
+	    nextChar(input);
+	}
+	
+	char nextChar (Scanner in) {
+		return in.next().charAt(0);
+	}
+	
+	void removeWhiteSpace(Scanner in){
+		while(in.hasNext(" ")){
+			in.next();
+		}
+	}
+	
+	boolean nextCharIsAlphaNumeric (Scanner in) {
+		return (nextCharIsLetter(in) || nextCharIsDigit(in));
+	}
+	
+	boolean nextCharIsDigit (Scanner in) {
+		return in.hasNext("[0-9]");
+	}
+	
+	boolean nextCharIsLetter (Scanner in) {
+		return in.hasNext("[a-zA-Z]");
+	}
+	
+	boolean nextCharIs(Scanner in, char c) {
+		return in.hasNext(Pattern.quote(c+""));
+	}
+	
+	
+	public static void main(String[] args) {
+		new Main().start();
 	}
 }
