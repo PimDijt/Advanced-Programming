@@ -20,7 +20,7 @@ public class Main {
 			descending;
 	
 	Main(){
-		tree = new BinaryTree<IdentifierInterface>();
+		tree = new BinaryTree<>();
 		in = new Scanner(System.in);
 		out = new PrintStream(System.out);
 		lowerCase = descending = false;
@@ -76,52 +76,46 @@ public class Main {
 		Scanner fileScanner = new Scanner(files);
 		fileScanner.useDelimiter(" ");
 		
-		try {
-			file = new BufferedReader(new FileReader(fileScanner.next()));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		text(file);
-		
-		while(fileScanner.hasNext()){
-			try {
-				file = new BufferedReader(new FileReader(fileScanner.next()));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			
+		do{
+			Scanner file = new Scanner(fileScanner.next());
 			text(file);
-		}
+			removeWhiteSpace(input);
+		} while(fileScanner.hasNext());
 	}
 		
-	void text(BufferedReader input){
-		String line;
-		try {
-			while((line = input.readLine()) != null){
-				Scanner lineScanner = new Scanner(line);
-				lineScanner.useDelimiter("");
-				readLine(lineScanner);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		printTree();
+	void text(Scanner input) {
+		do {
+			do {
+				word(input);
+				removeWhiteSpace(input);
+			} while (!delimiter(input));
+		} while (delimiter(input));
 	}
 	
-	void readLine(Scanner input){
-		removeWhiteSpace(input);
-		while (input.hasNext()) {
-			
-			if (nextCharIsLetter(input)) {
-				Identifier identifier = identifier(input);
-				if(lowerCase == true){
-					identifier = lowerCase(identifier);
-				}
-				tree.insert(identifier);
-			}else{
-				nextChar(input);
+	void word(Scanner input){
+		if(nextCharIsLetter(input)){
+			Identifier id = identifier(input);
+			if(lowerCase == true){
+				id = lowerCase(id);
 			}
+			tree.insert(id);
+		}else{
+			nonIdentifier(input);
+		}
+	}
+	
+	boolean delimiter(Scanner input){
+		if(nextCharIsAlphaNumeric(input)) return false;
+		
+		while(!nextCharIsAlphaNumeric(input)){
+			nextChar(input);
+		}
+		return true;
+	}
+	
+	void nonIdentifier(Scanner input){
+		while(nextCharIsAlphaNumeric(input)){
+			input.next();
 		}
 	}
 	
