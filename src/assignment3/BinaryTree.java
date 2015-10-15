@@ -6,10 +6,10 @@ import java.util.Iterator;
 public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 
 	Node<E> root;
-	ArrayList arraylist;
+	ArrayList<E> arraylist;
 	
 	BinaryTree(){
-		 arraylist = new ArrayList();
+		 arraylist = new ArrayList<>();
 	}
 	
 	public BinaryTree<E> init() {
@@ -37,9 +37,8 @@ public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 	}
 	
 	private Node<E> remove(Node<E> root, E e){
-		if(root == null){
-			throw new Error("...");
-		}
+		if(root == null) throw new Error("...");
+
 		if(e.compareTo(root.data) < 0){
 			root.left = remove(root.left, e);
 		} else if(e.compareTo(root.data) > 0){
@@ -71,7 +70,7 @@ public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 		if(root == null){
 			return new Node<E>(e);
 		}
-		if(e.compareTo(root.data) > 0){
+		if(e.compareTo(root.data) < 0){
 			root.left  = insert(root.left, e);
 		} else { 
 			root.right = insert(root.right, e);
@@ -80,17 +79,29 @@ public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
 	}
 
 	public Iterator<E> ascendingIterator() {
-		
-		
-		
-		return null;
+		root = ascendingIterator(root);
+		return arraylist.iterator();
+	}
+	
+	private Node<E> ascendingIterator(Node<E> root){
+		if (root.left  != null) ascendingIterator(root.left);
+		arraylist.add(root.data);
+		if (root.right != null) ascendingIterator(root.right);
+		return root;
 	}
 
 	public Iterator<E> descendingIterator() {
-		return null;
+		root = descendingIterator(root);
+		return arraylist.iterator();
+	}
+	
+	private Node<E> descendingIterator(Node<E> root){
+		if (root.right  != null) descendingIterator(root.right);
+		arraylist.add(root.data);
+		if (root.left != null) descendingIterator(root.left);
+		return root;
 	}
 }
-
 
 class Node<E extends Data<E>> {
 

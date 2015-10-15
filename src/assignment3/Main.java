@@ -1,15 +1,12 @@
 package assignment3;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
-import assignment2.APException;
-
 
 public class Main {
 
@@ -29,67 +26,55 @@ public class Main {
 	}
 	
 	
-	void start(){
-		String  row		   = in.nextLine();
-		Scanner rowScanner = new Scanner(row);
-		
-		rowScanner.useDelimiter("");
-		
+	void start(String[] args){		
+		for (int i = 0; i < args.length; i++){
+			commandLineArguments(new Scanner(args[i]));
+		}
+	}
+	
+	void commandLineArguments(Scanner input){
+		input.useDelimiter("");
+		if(nextCharIs(input, '-')) commandLineOption(input);		
+		else {
+			input.useDelimiter(" ");
+			parseFile(input);
+		}
+	}
+	
+	void commandLineOption(Scanner input){
+		character(input, '-');		
+		if	   (characterBoolean(input, 'i')) lowerCase  = true;
+		else if(characterBoolean(input, 'd')) descending = true;
+		else throw new Error("Incorrect flag passed.");
+	}
+	
+	void parseFile(Scanner input){
 		try {
-			commandLineArguments(rowScanner);
-		} catch (APException e) {
+			Scanner file = new Scanner(new File(input.next()));
+			file.useDelimiter("");
+			text(file);
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	void commandLineArguments(Scanner input) throws APException{
-		removeWhiteSpace(input);
-		if(nextCharIs(input, '-')) commandLineOptions(input);
-		
-		removeWhiteSpace(input);
-		files(input);
-	}
-	
-	void commandLineOptions(Scanner input) throws APException{
-		option(input);
-		removeWhiteSpace(input);
-		
-		while(nextCharIs(input, '-')){
-			option(input);
-			removeWhiteSpace(input);
-		}
-	}
-	
-	void option(Scanner input) throws APException{
-		character(input, '-');
-		removeWhiteSpace(input);
-		
-		if(characterBoolean(input, 'i')) lowerCase = true;
-		else if(characterBoolean(input, 'd')) descending = true;
-		else throw new APException("'"+nextChar(input)+"' is not an option.");
-		
-	}
-	
-	void files(Scanner input){
-		String  files 		= input.nextLine();
-		Scanner fileScanner = new Scanner(files);
-		
-		fileScanner.useDelimiter(" ");
-		
-		do{
-			Scanner file = new Scanner(fileScanner.next());
-			text(file);
-			removeWhiteSpace(input);
-		} while(fileScanner.hasNext());
-	}
 		
 	void text(Scanner input) {
-		do {
-			do {
+		while (!eof(input)){
+			do{
 				word(input);
-				removeWhiteSpace(input);
-			} while (!delimiter(input));
-		} while (delimiter(input));
+			} while(!delimiter(input));
+		}
+		printTree();
+	}
+	
+	boolean delimiter(Scanner input){
+		if (eoln(input)) 				   return true; 
+		if (nextCharIsAlphaNumeric(input)) return false;
+		
+		while(!nextCharIsAlphaNumeric(input) && !eoln(input)){
+			nextChar(input);
+		}
+		return true;
 	}
 	
 	void word(Scanner input){
@@ -99,24 +84,10 @@ public class Main {
 				id = lowerCase(id);
 			}
 			tree.insert(id);
-		}else{
+		} else {
 			nonIdentifier(input);
 		}
-	}
-	
-	boolean delimiter(Scanner input){
-		if(nextCharIsAlphaNumeric(input)) return false;
-		
-		while(!nextCharIsAlphaNumeric(input)){
-			nextChar(input);
-		}
-		return true;
-	}
-	
-	void nonIdentifier(Scanner input){
-		while(nextCharIsAlphaNumeric(input)){
-			input.next();
-		}
+		removeWhiteSpace(input);
 	}
 	
 	Identifier identifier(Scanner input){
@@ -129,8 +100,23 @@ public class Main {
 		return id;
 	}
 	
-	void printTree(){
+	void nonIdentifier(Scanner input){
+		while(nextCharIsAlphaNumeric(input)){
+			input.next();
+		}
+	}
 		
+	void printTree(){
+		Iterator<IdentifierInterface> it = (descending) ? tree.descendingIterator() : tree.ascendingIterator();
+		
+		while(it.hasNext()){
+			IdentifierInterface id = it.next();
+			
+			for (int i = 0; i < id.getSize(); i++) {
+				out.print(id.getChar(i));
+			}
+			out.print("\n");
+		}
 	}
 	
 	Identifier lowerCase(Identifier id) {
@@ -147,16 +133,20 @@ public class Main {
 		return id;
 	}
 	
-	
-	void character (Scanner input, char c) throws APException {
-		if (!input.hasNext()) 	   throw new APException("Statement has not been completed, expected " + c);
-	    if (!nextCharIs(input, c)) throw new APException("Read " + nextChar(input) + " and expected " + c);
+	void character (Scanner input, char c) {
+		if (!input.hasNext()){
+			throw new Error("eoln error.");
+		}
+	    if (!nextCharIs(input, c)){
+	    	throw new Error("Read " + nextChar(input) + " and expected " + c);
+	    }
 	    nextChar(input);
 	}
 	
-	boolean characterBoolean (Scanner input, char c) throws APException {
+	boolean characterBoolean (Scanner input, char c) {
 		if (!nextCharIs(input, c)) return false;
 		character(input, c);
+		
 	    return true;
 	} 
 	
@@ -186,8 +176,17 @@ public class Main {
 		return in.hasNext(Pattern.quote(c+""));
 	}
 	
+	boolean eoln (Scanner input) {
+	    if (input.hasNext()) return false;
+	    return true;
+	}
+	
+	boolean eof (Scanner input){
+		if (input.hasNextLine()) return false;
+		return true;
+	}
 	
 	public static void main(String[] args) {
-		new Main().start();
+		new Main().start(args);
 	}
 }
