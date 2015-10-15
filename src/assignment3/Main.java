@@ -8,28 +8,31 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import assignment2.APException;
+
 
 public class Main {
 
 	BinaryTree<IdentifierInterface> tree;
-	Scanner in;
-	PrintStream out;
+	Scanner 	   in;
+	PrintStream    out;
 	BufferedReader file;
 	
 	boolean lowerCase,
 			descending;
 	
 	Main(){
-		tree = new BinaryTree<>();
-		in = new Scanner(System.in);
-		out = new PrintStream(System.out);
+		tree 	  = new BinaryTree<>();
+		in 		  = new Scanner(System.in);
+		out 	  = new PrintStream(System.out);
 		lowerCase = descending = false;
 	}
 	
 	
 	void start(){
-		String row = in.nextLine();
+		String  row		   = in.nextLine();
 		Scanner rowScanner = new Scanner(row);
+		
 		rowScanner.useDelimiter("");
 		
 		try {
@@ -41,9 +44,8 @@ public class Main {
 	
 	void commandLineArguments(Scanner input) throws APException{
 		removeWhiteSpace(input);
-		if(nextCharIs(input, '-')){
-			commandLineOptions(input);
-		}
+		if(nextCharIs(input, '-')) commandLineOptions(input);
+		
 		removeWhiteSpace(input);
 		files(input);
 	}
@@ -51,6 +53,7 @@ public class Main {
 	void commandLineOptions(Scanner input) throws APException{
 		option(input);
 		removeWhiteSpace(input);
+		
 		while(nextCharIs(input, '-')){
 			option(input);
 			removeWhiteSpace(input);
@@ -60,20 +63,17 @@ public class Main {
 	void option(Scanner input) throws APException{
 		character(input, '-');
 		removeWhiteSpace(input);
-		if(nextCharIs(input, 'i')){
-			character(input, 'i');
-			lowerCase = true;
-		}else if(nextCharIs(input, 'd')){
-			character(input, 'd');
-			descending = true;
-		}else{
-			throw new APException("'"+nextChar(input)+"' is not an option.");
-		}
+		
+		if(characterBoolean(input, 'i')) lowerCase = true;
+		else if(characterBoolean(input, 'd')) descending = true;
+		else throw new APException("'"+nextChar(input)+"' is not an option.");
+		
 	}
 	
 	void files(Scanner input){
-		String files = input.nextLine();
+		String  files 		= input.nextLine();
 		Scanner fileScanner = new Scanner(files);
+		
 		fileScanner.useDelimiter(" ");
 		
 		do{
@@ -133,15 +133,15 @@ public class Main {
 		
 	}
 	
-	Identifier lowerCase(Identifier id){
+	Identifier lowerCase(Identifier id) {
 		String s = "";
-		for(int i=0; i<id.getSize(); i++){
+		for (int i = 0; i < id.getSize(); i++) {
 			s += id.getChar(i);
 		}
 		String identifier = s.toLowerCase();
 		id.init(identifier.charAt(0));
-		
-		for(int i=1; i< identifier.length(); i++){
+
+		for (int i = 1; i < identifier.length(); i++) {
 			id.addChar(identifier.charAt(i));
 		}
 		return id;
@@ -153,6 +153,12 @@ public class Main {
 	    if (!nextCharIs(input, c)) throw new APException("Read " + nextChar(input) + " and expected " + c);
 	    nextChar(input);
 	}
+	
+	boolean characterBoolean (Scanner input, char c) throws APException {
+		if (!nextCharIs(input, c)) return false;
+		character(input, c);
+	    return true;
+	} 
 	
 	char nextChar (Scanner in) {
 		return in.next().charAt(0);
