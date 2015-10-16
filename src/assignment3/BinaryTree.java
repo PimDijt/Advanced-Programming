@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E> {
 
-	Node<E> root;
-	ArrayList<E> arraylist;
+	private Node<E> root;
+	private ArrayList<E> arraylist;
 	
 	BinaryTree(){
 		 arraylist = new ArrayList<>();
@@ -115,7 +115,7 @@ public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E> {
 }
 
 class Node<E extends Data<E>> {
-
+	
     E data;
     Node<E> left, right;
 
