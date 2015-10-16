@@ -30,7 +30,9 @@ public class Main {
 		for (int i = 0; i < args.length; i++){
 			commandLineArguments(new Scanner(args[i]));
 		}
-		printTree();
+		try{
+			printTree();
+		} catch(Exception e){}
 	}
 	
 	void commandLineArguments(Scanner input){
@@ -52,8 +54,10 @@ public class Main {
 	void parseFile(Scanner input){
 		try {
 			Scanner file = new Scanner(new File(input.next()));
-			file.useDelimiter("");
-			text(file);
+			if (file.hasNext()){
+				file.useDelimiter("");
+				text(file);
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
