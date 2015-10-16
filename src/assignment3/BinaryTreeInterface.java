@@ -21,7 +21,7 @@ import java.util.Iterator;
  *              </dl>
  **/
 
-public interface BinaryTreeInterface<E extends Data<E>>{
+public interface BinaryTreeInterface<E extends Data<E>> extends Clonable<BinaryTreeInterface<E>>{
 	
 	/**
 	 * Initializes the BinaryTree object 

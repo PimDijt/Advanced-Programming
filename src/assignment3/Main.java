@@ -30,6 +30,7 @@ public class Main {
 		for (int i = 0; i < args.length; i++){
 			commandLineArguments(new Scanner(args[i]));
 		}
+		printTree();
 	}
 	
 	void commandLineArguments(Scanner input){
@@ -64,7 +65,6 @@ public class Main {
 				word(input);
 			} while(!delimiter(input));
 		}
-		printTree();
 	}
 	
 	boolean delimiter(Scanner input){
@@ -108,15 +108,32 @@ public class Main {
 		
 	void printTree(){
 		Iterator<IdentifierInterface> it = (descending) ? tree.descendingIterator() : tree.ascendingIterator();
+		IdentifierInterface currentID, nextID = new Identifier();
+
+		int counter = 1;		
+		currentID = it.next();
 		
 		while(it.hasNext()){
-			IdentifierInterface id = it.next();
-			
-			for (int i = 0; i < id.getSize(); i++) {
-				out.print(id.getChar(i));
+			while (it.hasNext()){
+				nextID = it.next();				
+				if (currentID.compareTo(nextID) == 0) counter++;
+				else break;
+			}			
+			if (counter % 2 != 0) printIdentifier(currentID);
+			if(it.hasNext()) {
+				currentID = nextID;
+				counter = 1;
+			} else if (currentID.compareTo(nextID) != 0) {
+				printIdentifier(nextID);
 			}
-			out.print("\n");
 		}
+	}
+	
+	void printIdentifier(IdentifierInterface id){
+		for (int i = 0; i < id.getSize(); i++) {
+			out.print(id.getChar(i));
+		}
+		out.print("\n");
 	}
 	
 	Identifier lowerCase(Identifier id) {

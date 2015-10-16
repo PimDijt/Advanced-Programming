@@ -3,13 +3,24 @@ package assignment3;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E>{
+public class BinaryTree<E extends Data<E>> implements BinaryTreeInterface<E> {
 
 	Node<E> root;
 	ArrayList<E> arraylist;
 	
 	BinaryTree(){
 		 arraylist = new ArrayList<>();
+	}
+	
+	public BinaryTreeInterface<E> clone() {
+		BinaryTree<E> cloned = new BinaryTree<>();
+		cloned.root = clone(root);
+		return cloned;
+	}
+	
+	private Node<E> clone(Node<E> root){
+		if (root == null) return null;
+		return new Node<E>(root.data, clone(root.left), clone(root.right));		
 	}
 	
 	public BinaryTree<E> init() {
